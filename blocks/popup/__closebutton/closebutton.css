@@ -4,8 +4,6 @@
   height: 32px;
   border: none;
   box-shadow: none;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  position: absolute;
-  right: -40px;
-  top: -40px;
+  background-color: transparent;
+  transform: translate(437px, -41px);
 }
