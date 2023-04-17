@@ -13,3 +13,6 @@
   margin-left: 36px;
   margin-top: 48px;
 }
+.popup__savebutton:hover {
+  opacity: 0.8;
+}
