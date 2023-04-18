@@ -1,5 +1,5 @@
 .popup__profession {
-  font-family: "Inter";
+  font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -14,4 +14,11 @@
   box-shadow: none;
   margin-top: 30px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+@media screen and (max-width: 767px) {
+  .popup__profession {
+    width: 238px;
+    height: 27px;
+    margin-left: 22px;
+  }
 }

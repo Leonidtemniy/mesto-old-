@@ -6,3 +6,10 @@
   box-sizing: border-box;
   margin-right: 0;
 }
+
+@media screen and (max-width: 767px) {
+  .header {
+    height: 56px;
+    padding: 0;
+  }
+}

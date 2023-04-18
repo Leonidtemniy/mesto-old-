@@ -12,3 +12,18 @@
   padding: 45px 200px 0px;
   box-sizing: border-box;
 }
+@media screen and (max-width: 1279px) {
+  .page {
+    padding: 28px 12% 0px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .page {
+    padding: 28px 8% 0px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .page {
+    padding: 28px 0% 0px;
+  }
+}
