@@ -17,8 +17,9 @@
 }
 @media screen and (max-width: 767px) {
   .popup__profession {
-    width: 238px;
+    width: 235px;
     height: 27px;
     margin-left: 22px;
+    margin-top: 27px;
   }
 }
