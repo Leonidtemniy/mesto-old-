@@ -1,0 +1,16 @@
+.profile__info {
+  display: grid;
+  grid-template-areas:
+    "avatar title"
+    "avatar subtitle";
+  justify-content: center;
+  flex-direction: column;
+  column-gap: 30px;
+}
+@media screen and (max-width: 767px) {
+  .profile__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
