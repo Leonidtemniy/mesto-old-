@@ -6,6 +6,7 @@
   box-shadow: none;
   background-color: transparent;
   transform: translate(437px, -41px);
+  cursor: pointer;
 }
 .popup__closebutton:hover {
   opacity: 0.5;

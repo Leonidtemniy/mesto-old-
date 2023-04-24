@@ -8,6 +8,9 @@
   margin: 0;
   grid-area: title;
   align-self: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media screen and (max-width: 767px) {
   .profile__title {
@@ -16,5 +19,6 @@
     align-self: center;
     margin-top: 27px;
     margin-left: 30px;
+    max-width: 75%;
   }
 }
