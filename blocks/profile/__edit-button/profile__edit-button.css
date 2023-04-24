@@ -3,7 +3,7 @@
   min-width: 24px;
   height: 24px;
   background-color: #0000;
-  margin-left: 13px;
+  margin-left: 24px;
   margin-bottom: 8px;
   border: none;
   cursor: pointer;
@@ -16,8 +16,7 @@
   .profile__edit-button {
     min-width: 18px;
     height: 18px;
-    margin-left: 4px;
-    margin-top: -3px;
+    margin-left: 10px;
     background-size: cover;
   }
 }
