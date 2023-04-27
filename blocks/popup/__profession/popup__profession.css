@@ -13,12 +13,11 @@
   margin-left: 36px;
   box-shadow: none;
   margin-top: 30px;
-  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  border-bottom: 1px solid rgba(84, 84, 84, 0.2);
 }
 @media screen and (max-width: 767px) {
   .popup__profession {
     width: 235px;
-    height: 27px;
     margin-left: 22px;
     margin-top: 27px;
   }

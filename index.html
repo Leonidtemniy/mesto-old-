@@ -13,7 +13,7 @@
     <header class="header">
       <img
         class="header__logo"
-        src="./images/logo-white.png"
+        src="./images/logo-white.svg"
         alt="Логотип сайта"
       />
     </header>
@@ -30,9 +30,8 @@
             <button class="profile__edit-button"></button>
           </div>
 
-          <h2 class="profile__subtitle">Исследователь океана</h2>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
-
         <button class="profile__add-button"></button>
       </section>
       <section class="elements">
@@ -103,32 +102,32 @@
           </div>
         </div>
       </section>
-      <section class="popup editpopup">
-        <div class="popup__container">
-          <button class="popup__closebutton"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form">
-            <input
-              class="popup__name"
-              type="text"
-              placeholder="Имя"
-              name="name"
-            />
-            <input
-              class="popup__profession"
-              type="text"
-              placeholder="Профессия"
-              name="profession"
-              maxlength="50"
-            />
-            <button class="popup__savebutton" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </section>
     </main>
     <footer class="footer">
       <p class="footer__text">&#169; 2020 Mesto Russia</p>
     </footer>
+    <section class="popup editpopup">
+      <div class="popup__container">
+        <button class="popup__closebutton"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form">
+          <input
+            class="popup__name"
+            type="text"
+            placeholder="Имя"
+            name="name"
+          />
+          <input
+            class="popup__profession"
+            type="text"
+            placeholder="Профессия"
+            name="profession"
+            maxlength="50"
+          />
+          <button class="popup__savebutton" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
     <script src="./script.js"></script>
   </body>
 </html>
