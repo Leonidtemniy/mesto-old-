@@ -1,5 +1,5 @@
 .profile__upinfo {
   display: flex;
   flex-direction: row;
-  max-width: 500px;
+  box-sizing: border-box;
 }

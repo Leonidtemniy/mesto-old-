@@ -27,15 +27,15 @@
           />
           <div class="profile__upinfo">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
 
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <article class="element">
           <img
             src="./images/kirill-pershin-1088404-unsplash.jpg"
             alt="фото Карачаевска"
@@ -43,10 +43,10 @@
           />
           <div class="element__info">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__button-like"></button>
+            <button class="element__button-like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/ruskeala.jpg"
             alt="фото Карелия"
@@ -54,10 +54,10 @@
           />
           <div class="element__info">
             <h2 class="element__title">Карелия</h2>
-            <button class="element__button-like"></button>
+            <button class="element__button-like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/altai.webp"
             alt="фото Алтай"
@@ -65,10 +65,10 @@
           />
           <div class="element__info">
             <h2 class="element__title">Алтай</h2>
-            <button class="element__button-like"></button>
+            <button class="element__button-like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/khibini.jpg"
             alt="фото Хибины"
@@ -76,10 +76,10 @@
           />
           <div class="element__info">
             <h2 class="element__title">Хибины</h2>
-            <button class="element__button-like"></button>
+            <button class="element__button-like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/piter.jpg"
             alt="фото Санкт-Петербург"
@@ -87,10 +87,10 @@
           />
           <div class="element__info">
             <h2 class="element__title">Санкт-Петербург</h2>
-            <button class="element__button-like"></button>
+            <button class="element__button-like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/sahalin.webp"
             alt="фото Сахалин"
@@ -98,27 +98,27 @@
           />
           <div class="element__info">
             <h2 class="element__title">Сахалин</h2>
-            <button class="element__button-like"></button>
+            <button class="element__button-like" type="button"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__text">&#169; 2020 Mesto Russia</p>
     </footer>
-    <section class="popup editpopup">
+    <div class="popup editpopup">
       <div class="popup__container">
-        <button class="popup__closebutton"></button>
+        <button class="popup__closebutton" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
+        <form class="popup__form" name="popupProfilInfoForm" method="post">
           <input
-            class="popup__name"
+            class="popup__input popup__name"
             type="text"
             placeholder="Имя"
             name="name"
           />
           <input
-            class="popup__profession"
+            class="popup__input popup__profession"
             type="text"
             placeholder="Профессия"
             name="profession"
@@ -127,7 +127,7 @@
           <button class="popup__savebutton" type="submit">Сохранить</button>
         </form>
       </div>
-    </section>
-    <script src="./script.js"></script>
+    </div>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
