@@ -7,23 +7,22 @@ const editPopupForm = editPopup.querySelector(".popup__form"); //объявля�
 const profileTitle = document.querySelector(".profile__title"); //объявляем переменную для значения имени
 const profileProfession = document.querySelector(".profile__subtitle"); //объявляем переменную для значения профессии
 
+function closePopup() {
+  editPopup.classList.remove("popup_opened"); // создаем функцию на закрытие попапа
+}
+
 editButton.addEventListener("click", function () {
   // добавляем ивентлисинер по клику на кнопку редактирования профиля для открытия попапа
   editPopup.classList.add("popup_opened");
-  nameInput.value = profileTitle.textContent;
-  professionInput.value = profileProfession.textContent;
+  nameInput.value = profileTitle.textContent; // пишем текстконтент тайтла в инпут
+  professionInput.value = profileProfession.textContent; // пишем текстконтент профессии в инпут
 });
-editPopupCloseButton.addEventListener("click", function () {
-  // добавляем ивнтлисинер на кнопку на закрытие
-  editPopup.classList.remove("popup_opened");
-});
+editPopupCloseButton.addEventListener("click", closePopup); //закрытие попапа по клику
 
 editPopupForm.addEventListener("submit", function (evt) {
   // добавляем сабмит на форму
   evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
-  const name = nameInput.value;
-  const profession = professionInput.value;
-  profileTitle.textContent = name;
-  profileProfession.textContent = profession;
-  editPopup.classList.remove("popup_opened");
+  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
+  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
+  closePopup(); //закрытие попапа после сабмита формы
 });
