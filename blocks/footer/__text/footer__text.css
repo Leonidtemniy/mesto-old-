@@ -1,5 +1,6 @@
 .footer__text {
-  font-family: "Inter", "Arial", sans-serif;
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -11,7 +12,6 @@
   .footer__text {
     font-size: 14px;
     line-height: 17px;
-    padding-left: 19px;
-    margin-top: 48px;
+    margin-top: 50px;
   }
 }
