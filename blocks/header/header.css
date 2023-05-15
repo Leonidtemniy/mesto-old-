@@ -5,10 +5,16 @@
   box-sizing: border-box;
   margin-right: 0;
   padding-bottom: 40px;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
   .header {
     padding-bottom: 31px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .header {
+    width: 100vw;
   }
 }

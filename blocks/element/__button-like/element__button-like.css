@@ -1,13 +1,9 @@
 .element__button-like {
-  background-image: url(../../../images/Vector.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: 22px;
+  background: #ffffff url(../../../images/Vector.svg) no-repeat center / cover;
+  min-width: 22px;
   height: 19px;
   margin-right: 20px;
   border: none;
-  background-color: #ffffff;
   cursor: pointer;
 }
 .element__button-like:hover {
