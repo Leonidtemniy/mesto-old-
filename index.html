@@ -16,6 +16,7 @@
     </header>
     <main class="main">
       <section class="profile">
+        p
         <div class="profile__info">
           <img class="profile__avatar" src="./images/image.jpg" alt="кусто жак ив" />
           <div class="profile__upinfo">
@@ -99,6 +100,32 @@
             type="text"
             placeholder="Профессия"
             name="profession"
+          />
+          <button class="popup__savebutton" type="submit" aria-label="сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup addpopup">
+      <div class="popup__container">
+        <button
+          class="popup__closebutton"
+          id="addPopupCloseButton"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" id="popupAddCardForm" name="popupAddCardForm" method="post">
+          <input
+            class="popup__input popup__input_type_place"
+            type="text"
+            placeholder="Название"
+            name="place"
+          />
+          <input
+            class="popup__input popup__input_type_img-path"
+            type="text"
+            placeholder="Ссылка на картинку"
+            name="img-path"
           />
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Сохранить</button>
         </form>
