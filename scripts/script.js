@@ -67,10 +67,14 @@ const initialCards = [
 ];
 
 /** @type {HTMLTemplateElement} */
-const elementTemplate = document.querySelector('#element-temlate'); //находим темплэйт
+const elementTemplate = document.querySelector('#element-template'); //находим темплэйт
 const elementTemplateContent = elementTemplate.content; //объвляем переменную  с контентом из темплэйта
 const cardTemplate = elementTemplateContent.querySelector('.element'); // объявляем переменную с карточкой в template
 const elements = document.querySelector('.elements'); // объявляем переменную элементс
+const popupImg = document.querySelector('.popup-img'); //
+
+const popupImgTitle = popupImg.querySelector('.popup-img__title');
+const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
 
 /** @param {{name:string; link:string}} createCard  */
 const createCard = ({ name, link }) => {
@@ -81,6 +85,12 @@ const createCard = ({ name, link }) => {
   newCardName.textContent = name; // присваеваем текст названия из масива
   const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
   newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
+
+  newCardPhoto.addEventListener('click', () => {
+    openPopup(popupImg);
+    popupImgTitle.textContent = newCardName.textContent;
+    popupImgPhoto.src = newCardPhoto.src;
+  });
   const likeButton = newCard.querySelector('.element__button-like');
   likeButton.addEventListener('click', () => {
     likeButton.classList.toggle('element__button-like_active');
@@ -110,4 +120,8 @@ addPopupForm.addEventListener('submit', evt => {
   const newUserCard = createCard({ name: placeValue, link: linkValue });
   elements.prepend(newUserCard);
   closePopup(addPopup); //закрытие попапа после сабмита формы
+});
+
+popupImg.addEventListener('click', () => {
+  closePopup(popupImg); // закрываем еще и по клику по всему попапу(так удобней)
 });

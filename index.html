@@ -126,11 +126,22 @@
             placeholder="Ссылка на картинку"
             name="img-path"
           />
-          <button class="popup__savebutton" type="submit" aria-label="сохранить">Сохранить</button>
+          <button class="popup__savebutton" type="submit" aria-label="сохранить">Создать</button>
         </form>
       </div>
     </div>
-    <template id="element-temlate">
+    <div class="popup-img">
+      <div class="popup-img__container">
+        <button
+          class="popupImg__closebutton_popupImg popup__closebutton"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <img class="popup-img__photo" src="./images/sahalin.webp" alt="фото карточки" />
+        <h2 class="popup-img__title">test</h2>
+      </div>
+    </div>
+    <template id="element-template">
       <article class="element" id="element">
         <button class="element__button-trash" type="button" aria-label="урна"></button>
         <img src="./images/ruskeala.jpg" alt="фото Карелия" class="element__photo" />
