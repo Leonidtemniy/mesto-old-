@@ -38,38 +38,11 @@ editPopupForm.addEventListener('submit', function (evt) {
   closePopup(editPopup); //закрытие попапа после сабмита формы
 });
 
-const initialCards = [
-  // массив с карточками
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 /** @type {HTMLTemplateElement} */
-const elementTemplate = document.querySelector('#element-template'); //находим темплэйт
-const elementTemplateContent = elementTemplate.content; //объвляем переменную  с контентом из темплэйта
-const cardTemplate = elementTemplateContent.querySelector('.element'); // объявляем переменную с карточкой в template
+// const elementTemplate = document.querySelector('#element-template'); //находим темплэйт
+// const elementTemplateContent = elementTemplate.content; //объвляем переменную  с контентом из темплэйта
+// const cardTemplate = elementTemplateContent.querySelector('.element'); // объявляем переменную с карточкой в template
+const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 const elements = document.querySelector('.elements'); // объявляем переменную элементс
 const popupImg = document.querySelector('.popup-img'); //
 
@@ -85,11 +58,12 @@ const createCard = ({ name, link }) => {
   newCardName.textContent = name; // присваеваем текст названия из масива
   const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
   newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
-
+  newCardPhoto.alt = 'Фотография ' + name;
   newCardPhoto.addEventListener('click', () => {
     openPopup(popupImg);
     popupImgTitle.textContent = newCardName.textContent;
     popupImgPhoto.src = newCardPhoto.src;
+    popupImgPhoto.alt = newCardPhoto.alt;
   });
   const likeButton = newCard.querySelector('.element__button-like');
   likeButton.addEventListener('click', () => {
@@ -103,7 +77,7 @@ const createCard = ({ name, link }) => {
   return newCard;
 };
 
-initialCards.forEach(card => {
+CardData.forEach(card => {
   //проходим циклом по массиву
   const newCard = createCard(card);
   elements.append(newCard);
@@ -119,6 +93,7 @@ addPopupForm.addEventListener('submit', evt => {
   const linkValue = values['img-path'];
   const newUserCard = createCard({ name: placeValue, link: linkValue });
   elements.prepend(newUserCard);
+  form.reset(); // скидываем ранее введенные данные с полей
   closePopup(addPopup); //закрытие попапа после сабмита формы
 });
 
