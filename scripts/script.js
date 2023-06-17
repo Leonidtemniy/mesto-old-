@@ -58,7 +58,7 @@ const createCard = ({ name, link }) => {
   newCardName.textContent = name; // присваеваем текст названия из масива
   const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
   newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
-  newCardPhoto.alt = 'Фотография ' + name;
+  newCardPhoto.alt = `Фотография ${name}`;
   newCardPhoto.addEventListener('click', () => {
     openPopup(popupImg);
     popupImgTitle.textContent = newCardName.textContent;
