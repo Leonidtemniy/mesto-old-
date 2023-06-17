@@ -12,6 +12,7 @@ const addButton = document.querySelector('.profile__add-button'); // объяв�
 const addPopupCloseButton = addPopup.querySelector('#addPopupCloseButton'); // объявляем переменную для кнопки закрытия мест
 /**@type {HTMLFormElement} */
 const addPopupForm = addPopup.querySelector('#popupAddCardForm'); //объявляем переменную для формы добавления мест
+const popups = document.querySelectorAll('.popup'); // выбираем все попапы и объявляем переменную
 
 function closePopup(anyPopup) {
   anyPopup.classList.remove('popup_opened'); // создаем функцию на закрытие попапа
@@ -98,5 +99,23 @@ addPopupForm.addEventListener('submit', evt => {
 });
 
 popupImg.addEventListener('click', () => {
-  closePopup(popupImg); // закрываем еще и по клику по всему попапу(так удобней)
+  closePopup(popupImg); // закрываем еще и по клику по всему попапу в том числе и самой картинке(так удобней)
+});
+
+popups.forEach(popup => {
+  //проходим по всем попапам
+  popup.addEventListener('click', click => {
+    //закрываем по клику
+    if (click.target === popup) {
+      closePopup(popup);
+    }
+  });
+  document.addEventListener('keydown', evt => {
+    //закрываем по esc
+    if (evt.key === 'Escape') {
+      console.log(popup);
+      console.log(evt.key);
+      closePopup(popup);
+    }
+  });
 });
