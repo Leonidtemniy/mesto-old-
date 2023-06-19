@@ -42,13 +42,18 @@
       <div class="popup__container">
         <button class="popup__closebutton" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popupProfilInfoForm" method="post">
+        <form
+          class="popup__form"
+          name="popupProfilInfoForm"
+          method="post"
+          action="/submit"
+          novalidate
+        >
           <input
             class="popup__input popup__input_type_name"
             type="text"
             placeholder="Имя"
             name="name"
-            required
           />
 
           <input
@@ -56,7 +61,6 @@
             type="text"
             placeholder="Профессия"
             name="profession"
-            required
           />
 
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Сохранить</button>
@@ -72,20 +76,25 @@
           aria-label="закрыть"
         ></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" id="popupAddCardForm" name="popupAddCardForm" method="post">
+        <form
+          class="popup__form"
+          id="popupAddCardForm"
+          name="popupAddCardForm"
+          action="/submit"
+          method="post"
+          novalidate
+        >
           <input
             class="popup__input popup__input_type_place"
             type="text"
             placeholder="Название"
             name="place"
-            required
           />
           <input
             class="popup__input popup__input_type_img-path"
-            type="url"
             placeholder="Ссылка на картинку"
+            type="url"
             name="img-path"
-            required
           />
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Создать</button>
         </form>

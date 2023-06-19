@@ -84,19 +84,7 @@ CardData.forEach(card => {
   elements.append(newCard);
 });
 
-addPopupForm.addEventListener('submit', evt => {
-  evt.preventDefault(); // прерываем обновление страницы и отправку на сервер
-  const form = evt.target;
-  const formData = new FormData(form);
-  /**@type {HTMLFormElement} */
-  const values = Object.fromEntries(formData);
-  const placeValue = values['place'];
-  const linkValue = values['img-path'];
-  const newUserCard = createCard({ name: placeValue, link: linkValue });
-  elements.prepend(newUserCard);
-  form.reset(); // скидываем ранее введенные данные с полей
-  closePopup(addPopup); //закрытие попапа после сабмита формы
-});
+// addPopupForm.addEventListener('submit', evt => {});
 
 popupImg.addEventListener('click', () => {
   closePopup(popupImg); // закрываем еще и по клику по всему попапу в том числе и самой картинке(так удобней)
@@ -113,8 +101,6 @@ popups.forEach(popup => {
   document.addEventListener('keydown', evt => {
     //закрываем по esc
     if (evt.key === 'Escape') {
-      console.log(popup);
-      console.log(evt.key);
       closePopup(popup);
     }
   });
