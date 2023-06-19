@@ -1,6 +1,30 @@
-const validators = {
+function editProfile() {
+  const nameInput = editPopupForm.querySelector('.popup__input[name="name"]');
+  const professionInput = editPopupForm.querySelector('.popup__input[name="profession"]');
+
+  profileTitle.textContent = nameInput.value;
+  profileProfession.textContent = professionInput.value;
+
+  closePopup(editPopup);
+}
+function AddCard() {
+  const placeInput = addPopupForm.querySelector('.popup__input[name="place"]');
+  const linkInput = addPopupForm.querySelector('.popup__input[name="img-path"]');
+
+  const newUserCard = createCard({ name: placeInput.value, link: linkInput.value });
+  elements.prepend(newUserCard);
+
+  addPopupForm.reset();
+  closePopup(addPopup);
+}
+
+//////////////////////////////////
+const editValidators = {
   name: validateName,
-  profession: validateProfession,
+  profession: validateProfession
+};
+
+const addValidators = {
   place: validatePlace,
   'img-path': validateImgPath
 };
@@ -12,10 +36,17 @@ const classNames = {
   error: 'popup__error'
 };
 
-enableValidation(editPopupForm, validators, classNames);
-enableValidation(addPopupForm, validators, classNames);
+function handleSubmit(values, evt) {
+  evt.preventDefault();
+}
 
-function enableValidation(form, validators, classNames) {
+function handleError() {
+  console.error('Form Error');
+}
+enableValidation(editPopupForm, editValidators, classNames, editProfile, handleError);
+enableValidation(addPopupForm, addValidators, classNames, AddCard, handleError);
+
+function enableValidation(form, validators, classNames, handleSubmit, handleError) {
   // возращаем или строку или null
   const validate = (key, value, values) => {
     const validator = validators[key];
@@ -40,62 +71,74 @@ function enableValidation(form, validators, classNames) {
     if (!errorEl) {
       errorEl = document.createElement('p');
       inputEl.after(errorEl);
-      errorEl.dataset.key = key;
-      errorEl.classList.add(classNames.error);
     }
+    errorEl.dataset.key = key;
+    errorEl.classList.add(classNames.error);
     errorEl.textContent = errorMessage;
   };
+
   const clearError = key => {
     const inputEl = getInputElement(key);
     inputEl.classList.remove(classNames.inputInvalid);
     const errorEl = getErrorElement(key);
-    errorEl.remove();
+    if (errorEl) {
+      errorEl.remove();
+    }
   };
 
   form.addEventListener('input', evt => {
-    const key = evt.target.name;
-    const value = evt.target.value;
+    const input = evt.target;
+    const key = input.name;
+    const value = input.value;
     const formData = new FormData(evt.currentTarget);
     const values = Object.fromEntries(formData);
 
     const error = validate(key, value, values); // вызываем функцмю validate с данными всплывшими их инпута и поймаными на форме
     if (!error) {
       // ранний ретёрн если нет ошибки(венулся null)
+      input.onblur = () => {
+        input.dataset.dirty = 'true';
+        input.onblur = null;
+      };
       clearError(key);
       return;
     }
-    setError(key, error);
-    return;
+
+    if (input.dataset.dirty === 'true') {
+      setError(key, error);
+      return;
+    }
+
+    input.onblur = () => {
+      input.dataset.dirty = 'true';
+      input.onblur = null;
+      setError(key, error);
+    };
   });
 
   form.addEventListener('submit', evt => {
     // добавляем слушатель на сабмит формы
-    evt.preventDefault(); // Отменяем отправку формы по умолчанию
-
     let isFormValid = true;
     const formData = new FormData(evt.currentTarget);
     const values = Object.fromEntries(formData);
 
     formData.forEach((value, key) => {
+      const input = getInputElement(key);
+      input.dataset.dirty = 'true';
       const error = validate(key, value, values);
       if (!error) {
         return;
       }
-
       setError(key, error);
       isFormValid = false;
     });
 
     if (!isFormValid) {
+      evt.preventDefault();
+      handleError(values, evt);
       return; // Прерываем выполнение функции
     }
-
-    const placeValue = values['place'];
-    const linkValue = values['img-path'];
-    const newUserCard = createCard({ name: placeValue, link: linkValue });
-    elements.prepend(newUserCard);
-    form.reset(); // Сбрасываем форму
-    closePopup(addPopup); // Закрываем попап
+    handleSubmit(values, evt);
   });
 }
 function validateName(value) {

@@ -30,19 +30,37 @@ editButton.addEventListener('click', function () {
 });
 editPopupCloseButton.addEventListener('click', () => closePopup(editPopup)); //закрытие попапа профиля
 addPopupCloseButton.addEventListener('click', () => closePopup(addPopup)); // закрытие попапа мест
+//новые функции вместо ивентлисенеров
+//на редакцию профиля
+// function EditProfileSubmit(evt) {
+//   evt.preventDefault();
 
-editPopupForm.addEventListener('submit', function (evt) {
-  // добавляем сабмит на форму
-  evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
-  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
-  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
-  closePopup(editPopup); //закрытие попапа после сабмита формы
-});
+//   const nameInput = editPopupForm.querySelector('.popup__input[name="name"]');
+//   const professionInput = editPopupForm.querySelector('.popup__input[name="profession"]');
 
-/** @type {HTMLTemplateElement} */
-// const elementTemplate = document.querySelector('#element-template'); //находим темплэйт
-// const elementTemplateContent = elementTemplate.content; //объвляем переменную  с контентом из темплэйта
-// const cardTemplate = elementTemplateContent.querySelector('.element'); // объявляем переменную с карточкой в template
+//   profileTitle.textContent = nameInput.value;
+//   profileProfession.textContent = professionInput.value;
+
+//   closePopup(editPopup);
+// }
+// editPopupForm.addEventListener('submit', EditProfileSubmit);
+// //на добавление карточки
+// function AddCardSubmit(evt) {
+//   evt.preventDefault();
+
+//   const placeInput = addPopupForm.querySelector('.popup__input[name="place"]');
+//   const linkInput = addPopupForm.querySelector('.popup__input[name="img-path"]');
+
+//   const newUserCard = createCard({ name: placeInput.value, link: linkInput.value });
+//   elements.prepend(newUserCard);
+
+//   addPopupForm.reset();
+//   closePopup(addPopup);
+// }
+// addPopupForm.addEventListener('submit', AddCardSubmit);
+
+//
+
 const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 const elements = document.querySelector('.elements'); // объявляем переменную элементс
 const popupImg = document.querySelector('.popup-img'); //
@@ -60,6 +78,7 @@ const createCard = ({ name, link }) => {
   const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
   newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
   newCardPhoto.alt = `Фотография ${name}`;
+
   newCardPhoto.addEventListener('click', () => {
     openPopup(popupImg);
     popupImgTitle.textContent = newCardName.textContent;
