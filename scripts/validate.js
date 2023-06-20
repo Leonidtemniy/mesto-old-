@@ -1,4 +1,23 @@
-//////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+function handleAddSubmit(values, evt) {
+  evt.preventDefault();
+  const placeValue = values['place'];
+  const linkValue = values['img-path'];
+  const newUserCard = createCard({ name: placeValue, link: linkValue });
+  elements.prepend(newUserCard);
+  //evt.target.reset(); // скидываем ранее введенные данные с полей
+  closePopup(addPopup); //закрытие попапа после сабмита формы
+}
+
+function handleEditSubmit(values, evt) {
+  // добавляем сабмит на форму
+  evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
+  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
+  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
+  closePopup(editPopup); //закрытие попапа после сабмита формы
+}
+/////////////////////////////////////////////////////////////////////
+
 const editValidators = {
   name: validateName,
   profession: validateProfession
@@ -24,8 +43,8 @@ function handleError() {
   console.error('Form Error');
 }
 
-enableValidation(editPopupForm, editValidators, classNames, handleSubmit, handleError);
-enableValidation(addPopupForm, addValidators, classNames, handleSubmit, handleError);
+enableValidation(editPopupForm, editValidators, classNames, handleEditSubmit, handleError);
+enableValidation(addPopupForm, addValidators, classNames, handleAddSubmit, handleError);
 
 function enableValidation(form, validators, classNames, handleSubmit, handleError) {
   // возращаем или строку или null
@@ -40,9 +59,15 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
 
   const getErrorElement = key => {
     const inputsContainerEl = form.querySelector(`.${classNames.inputsContainer}`);
-    // return inputsContainerEl.querySelector(`.${classNames.error}[data-key=${key}]`);
+
     return document.querySelector(`.${classNames.error}[data-key="${key}"]`); // поиск по всей странице, а не в одной форме
   };
+  //////////////
+  const setDisabledButton = form => {
+    const saveButton = form.querySelector('.popup__savebutton');
+    saveButton.classList.add('.popup__savebutton_disabled');
+  };
+  /////////////
 
   const setError = (key, errorMessage) => {
     const inputEl = getInputElement(key);
@@ -124,7 +149,7 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
 }
 function validateName(value) {
   if (!value) {
-    return 'Вы пропустили это поле';
+    return 'Вы пропустили это поле.';
   }
   if (value.length < 2 || value.length > 40) {
     return 'Минимальное колличество символов 2, максимальное 40';
@@ -133,7 +158,7 @@ function validateName(value) {
 }
 function validateProfession(value) {
   if (!value) {
-    return 'Вы пропустили это поле';
+    return 'Вы пропустили это поле.';
   }
   if (value.length < 2 || value.length > 200) {
     return 'Минимальное колличество символов 2, максимальное 200';
@@ -142,7 +167,7 @@ function validateProfession(value) {
 }
 function validatePlace(value) {
   if (!value) {
-    return 'Вы пропустили это поле';
+    return 'Вы пропустили это поле.';
   }
   if (value.length < 2 || value.length > 30) {
     return 'Минимальное колличество символов 2, максимальное 30';
@@ -151,11 +176,11 @@ function validatePlace(value) {
 }
 function validateImgPath(value) {
   if (!value) {
-    return 'Вы пропустили это поле';
+    return 'Вы пропустили это поле.';
   }
 
   if (!/^(http|https):\/\/.*\.(jpg|jpeg|png|gif)$/i.test(value)) {
-    return 'Некорретный адрес сайта';
+    return 'Введите адрес сайта.';
   }
 
   return null;

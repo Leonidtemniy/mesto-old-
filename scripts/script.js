@@ -32,14 +32,6 @@ editButton.addEventListener('click', function () {
 editPopupCloseButton.addEventListener('click', () => closePopup(editPopup)); //закрытие попапа профиля
 addPopupCloseButton.addEventListener('click', () => closePopup(addPopup)); // закрытие попапа мест
 
-editPopupForm.addEventListener('submit', function (evt) {
-  // добавляем сабмит на форму
-  evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
-  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
-  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
-  closePopup(editPopup); //закрытие попапа после сабмита формы
-});
-
 const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 const elements = document.querySelector('.elements'); // объявляем переменную элементс
 const popupImg = document.querySelector('.popup-img'); //
@@ -79,20 +71,6 @@ CardData.forEach(card => {
   //проходим циклом по массиву
   const newCard = createCard(card);
   elements.append(newCard);
-});
-
-addPopupForm.addEventListener('submit', evt => {
-  evt.preventDefault(); // прерываем обновление страницы и отправку на сервер
-  const form = evt.target;
-  const formData = new FormData(form);
-  /**@type {HTMLFormElement} */
-  const values = Object.fromEntries(formData);
-  const placeValue = values['place'];
-  const linkValue = values['img-path'];
-  const newUserCard = createCard({ name: placeValue, link: linkValue });
-  elements.prepend(newUserCard);
-  form.reset(); // скидываем ранее введенные данные с полей
-  closePopup(addPopup); //закрытие попапа после сабмита формы
 });
 
 popupImg.addEventListener('click', () => {
