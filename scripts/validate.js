@@ -1,23 +1,3 @@
-function editProfile() {
-  const nameInput = editPopupForm.querySelector('.popup__input[name="name"]');
-  const professionInput = editPopupForm.querySelector('.popup__input[name="profession"]');
-
-  profileTitle.textContent = nameInput.value;
-  profileProfession.textContent = professionInput.value;
-
-  closePopup(editPopup);
-}
-function AddCard() {
-  const placeInput = addPopupForm.querySelector('.popup__input[name="place"]');
-  const linkInput = addPopupForm.querySelector('.popup__input[name="img-path"]');
-
-  const newUserCard = createCard({ name: placeInput.value, link: linkInput.value });
-  elements.prepend(newUserCard);
-
-  addPopupForm.reset();
-  closePopup(addPopup);
-}
-
 //////////////////////////////////
 const editValidators = {
   name: validateName,
@@ -43,8 +23,9 @@ function handleSubmit(values, evt) {
 function handleError() {
   console.error('Form Error');
 }
-enableValidation(editPopupForm, editValidators, classNames, editProfile, handleError);
-enableValidation(addPopupForm, addValidators, classNames, AddCard, handleError);
+
+enableValidation(editPopupForm, editValidators, classNames, handleSubmit, handleError);
+enableValidation(addPopupForm, addValidators, classNames, handleSubmit, handleError);
 
 function enableValidation(form, validators, classNames, handleSubmit, handleError) {
   // возращаем или строку или null

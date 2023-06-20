@@ -3,17 +3,18 @@ const editPopup = document.querySelector('.editpopup'); //объявляем п�
 const editPopupCloseButton = editPopup.querySelector('.popup__closebutton'); //объявляем переменную для кнопки закрытия профиля
 const nameInput = editPopup.querySelector('.popup__input_type_name'); //объявляем переменную для ипута имени профиля
 const professionInput = editPopup.querySelector('.popup__input_type_profession'); //объявляем переменную для инпута профессии
+
 const editPopupForm = editPopup.querySelector('.popup__form'); //объявляем переменную для формы редактирования профиля
+
 const profileTitle = document.querySelector('.profile__title'); //объявляем переменную для значения имени
 const profileProfession = document.querySelector('.profile__subtitle'); //объявляем переменную для значения профессии
 
 const addPopup = document.querySelector('.addpopup'); //объявляем переменную для всего попапа добавленияя мест
 const addButton = document.querySelector('.profile__add-button'); // объявляем переменную для открытия попапа добавления мест
 const addPopupCloseButton = addPopup.querySelector('#addPopupCloseButton'); // объявляем переменную для кнопки закрытия мест
-/**@type {HTMLFormElement} */
+
 const addPopupForm = addPopup.querySelector('#popupAddCardForm'); //объявляем переменную для формы добавления мест
 const popups = document.querySelectorAll('.popup'); // выбираем все попапы и объявляем переменную
-
 function closePopup(anyPopup) {
   anyPopup.classList.remove('popup_opened'); // создаем функцию на закрытие попапа
 }
@@ -30,36 +31,14 @@ editButton.addEventListener('click', function () {
 });
 editPopupCloseButton.addEventListener('click', () => closePopup(editPopup)); //закрытие попапа профиля
 addPopupCloseButton.addEventListener('click', () => closePopup(addPopup)); // закрытие попапа мест
-//новые функции вместо ивентлисенеров
-//на редакцию профиля
-// function EditProfileSubmit(evt) {
-//   evt.preventDefault();
 
-//   const nameInput = editPopupForm.querySelector('.popup__input[name="name"]');
-//   const professionInput = editPopupForm.querySelector('.popup__input[name="profession"]');
-
-//   profileTitle.textContent = nameInput.value;
-//   profileProfession.textContent = professionInput.value;
-
-//   closePopup(editPopup);
-// }
-// editPopupForm.addEventListener('submit', EditProfileSubmit);
-// //на добавление карточки
-// function AddCardSubmit(evt) {
-//   evt.preventDefault();
-
-//   const placeInput = addPopupForm.querySelector('.popup__input[name="place"]');
-//   const linkInput = addPopupForm.querySelector('.popup__input[name="img-path"]');
-
-//   const newUserCard = createCard({ name: placeInput.value, link: linkInput.value });
-//   elements.prepend(newUserCard);
-
-//   addPopupForm.reset();
-//   closePopup(addPopup);
-// }
-// addPopupForm.addEventListener('submit', AddCardSubmit);
-
-//
+editPopupForm.addEventListener('submit', function (evt) {
+  // добавляем сабмит на форму
+  evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
+  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
+  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
+  closePopup(editPopup); //закрытие попапа после сабмита формы
+});
 
 const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 const elements = document.querySelector('.elements'); // объявляем переменную элементс
@@ -77,8 +56,7 @@ const createCard = ({ name, link }) => {
   newCardName.textContent = name; // присваеваем текст названия из масива
   const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
   newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
-  newCardPhoto.alt = `Фотография ${name}`;
-
+  newCardPhoto.alt = 'Фотография ' + name;
   newCardPhoto.addEventListener('click', () => {
     openPopup(popupImg);
     popupImgTitle.textContent = newCardName.textContent;
@@ -103,10 +81,22 @@ CardData.forEach(card => {
   elements.append(newCard);
 });
 
-// addPopupForm.addEventListener('submit', evt => {});
+addPopupForm.addEventListener('submit', evt => {
+  evt.preventDefault(); // прерываем обновление страницы и отправку на сервер
+  const form = evt.target;
+  const formData = new FormData(form);
+  /**@type {HTMLFormElement} */
+  const values = Object.fromEntries(formData);
+  const placeValue = values['place'];
+  const linkValue = values['img-path'];
+  const newUserCard = createCard({ name: placeValue, link: linkValue });
+  elements.prepend(newUserCard);
+  form.reset(); // скидываем ранее введенные данные с полей
+  closePopup(addPopup); //закрытие попапа после сабмита формы
+});
 
 popupImg.addEventListener('click', () => {
-  closePopup(popupImg); // закрываем еще и по клику по всему попапу в том числе и самой картинке(так удобней)
+  closePopup(popupImg); // закрываем еще и по клику по всему попапу(так удобней)
 });
 
 popups.forEach(popup => {
