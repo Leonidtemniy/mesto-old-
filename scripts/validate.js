@@ -1,11 +1,15 @@
-//////////////////////////////////////////////////////////////////////
+//
+// работа сделана по методу наставника,
+// есть некоторые отклонения от ТЗ например
+// ошибки срабатывают по онблюр при вызоде из поля
+///////////////////////////////////////////////////
 function handleAddSubmit(values, evt) {
   evt.preventDefault();
   const placeValue = values['place'];
   const linkValue = values['img-path'];
   const newUserCard = createCard({ name: placeValue, link: linkValue });
   elements.prepend(newUserCard);
-  //evt.target.reset(); // скидываем ранее введенные данные с полей
+  evt.target.reset(); // скидываем ранее введенные данные с полей
   closePopup(addPopup); //закрытие попапа после сабмита формы
 }
 
@@ -16,7 +20,6 @@ function handleEditSubmit(values, evt) {
   profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
   closePopup(editPopup); //закрытие попапа после сабмита формы
 }
-/////////////////////////////////////////////////////////////////////
 
 const editValidators = {
   name: validateName,
@@ -63,15 +66,20 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
     return document.querySelector(`.${classNames.error}[data-key="${key}"]`); // поиск по всей странице, а не в одной форме
   };
   //////////////
-  const setDisabledButton = form => {
+  const setDisabledButton = () => {
     const saveButton = form.querySelector('.popup__savebutton');
-    saveButton.classList.add('.popup__savebutton_disabled');
+    saveButton.classList.add('popup__savebutton_disabled');
+  };
+  const setUnDisabledButton = () => {
+    const saveButton = form.querySelector('.popup__savebutton');
+    saveButton.classList.remove('popup__savebutton_disabled');
   };
   /////////////
 
   const setError = (key, errorMessage) => {
     const inputEl = getInputElement(key);
     inputEl.classList.add(classNames.inputInvalid);
+    setDisabledButton();
 
     let errorEl = getErrorElement(key);
     if (!errorEl) {
@@ -86,9 +94,11 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
   const clearError = key => {
     const inputEl = getInputElement(key);
     inputEl.classList.remove(classNames.inputInvalid);
+
     const errorEl = getErrorElement(key);
     if (errorEl) {
       errorEl.remove();
+      setUnDisabledButton();
     }
   };
 
@@ -141,6 +151,7 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
 
     if (!isFormValid) {
       evt.preventDefault();
+
       handleError(values, evt);
       return; // Прерываем выполнение функции
     }
