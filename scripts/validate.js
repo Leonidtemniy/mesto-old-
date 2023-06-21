@@ -83,29 +83,35 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
     const value = input.value;
     const formData = new FormData(evt.currentTarget);
     const values = Object.fromEntries(formData);
-
+    ///
+    function hasInvalidInput(inputList) {
+      return inputList.some(inputElement => {
+        return !inputElement.validity.valid;
+      });
+    }
+    ///
     const error = validate(key, value, values); // вызываем функцмю validate с данными всплывшими их инпута и поймаными на форме
     if (!error) {
       // ранний ретёрн если нет ошибки(венулся null)
-      input.onblur = () => {
-        input.dataset.dirty = 'true';
-        input.onblur = null;
-      };
+      // input.onblur = () => {
+      //   input.dataset.dirty = 'true';
+      //   input.onblur = null;
+      // };
       clearError(key);
-
+      setUnDisabledButton();
       return;
     }
+    setDisabledButton();
+    // if (input.dataset.dirty === 'true') {
+    setError(key, error);
+    return;
+    // }
 
-    if (input.dataset.dirty === 'true') {
-      setError(key, error);
-      return;
-    }
-
-    input.onblur = () => {
-      input.dataset.dirty = 'true';
-      input.onblur = null;
-      setError(key, error);
-    };
+    // input.onblur = () => {
+    //   input.dataset.dirty = 'true';
+    //   input.onblur = null;
+    //   setError(key, error);
+    // };
   });
 
   form.addEventListener('submit', evt => {
@@ -113,10 +119,9 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
     let isFormValid = true;
     const formData = new FormData(evt.currentTarget);
     const values = Object.fromEntries(formData);
-
     formData.forEach((value, key) => {
       const input = getInputElement(key);
-      input.dataset.dirty = 'true';
+      // input.dataset.dirty = 'true';
       const error = validate(key, value, values);
 
       if (!error) {
@@ -210,5 +215,6 @@ function validateImgPath(value) {
   if (!isValid) {
     return input.validationMessage;
   }
+
   return null;
 }

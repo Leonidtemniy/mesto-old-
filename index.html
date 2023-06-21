@@ -44,19 +44,21 @@
         <button class="popup__closebutton" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="popupProfilInfoForm" method="post" novalidate>
-          <input
-            class="popup__input popup__input_type_name"
-            type="text"
-            placeholder="Имя"
-            name="name"
-          />
+          <div class="popup__input-container">
+            <input
+              class="popup__input popup__input_type_name"
+              type="text"
+              placeholder="Имя"
+              name="name"
+            />
 
-          <input
-            class="popup__input popup__input_type_profession"
-            type="text"
-            placeholder="Профессия"
-            name="profession"
-          />
+            <input
+              class="popup__input popup__input_type_profession"
+              type="text"
+              placeholder="Профессия"
+              name="profession"
+            />
+          </div>
 
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Сохранить</button>
         </form>
@@ -78,25 +80,21 @@
           method="post"
           novalidate
         >
-          <input
-            class="popup__input popup__input_type_place"
-            type="text"
-            placeholder="Название"
-            name="place"
-          />
-          <input
-            class="popup__input popup__input_type_img-path"
-            placeholder="Ссылка на картинку"
-            type="url"
-            name="img-path"
-          />
-          <button
-            class="popup__savebutton popup__savebutton_disabled"
-            type="submit"
-            aria-label="сохранить"
-          >
-            Создать
-          </button>
+          <div class="popup__input-container">
+            <input
+              class="popup__input popup__input_type_place"
+              type="text"
+              placeholder="Название"
+              name="place"
+            />
+            <input
+              class="popup__input popup__input_type_img-path"
+              placeholder="Ссылка на картинку"
+              type="url"
+              name="img-path"
+            />
+          </div>
+          <button class="popup__savebutton" type="submit" aria-label="сохранить">Создать</button>
         </form>
       </div>
     </div>
