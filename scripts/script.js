@@ -15,12 +15,35 @@ const addPopupCloseButton = addPopup.querySelector('#addPopupCloseButton'); // �
 
 const addPopupForm = addPopup.querySelector('#popupAddCardForm'); //объявляем переменную для формы добавления мест
 const popups = document.querySelectorAll('.popup'); // выбираем все попапы и объявляем переменную
+
+////функции закрытия и открытия
+function closeByEsc(evt) {
+  //функция закрытия по Esc
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
+
 function closePopup(anyPopup) {
   anyPopup.classList.remove('popup_opened'); // создаем функцию на закрытие попапа
+  document.addEventListener('keydown', closeByEsc);
 }
 function openPopup(anyPopup) {
   anyPopup.classList.add('popup_opened'); // создаем функцию на открытие попапа
+  document.addEventListener('keydown', closeByEsc);
 }
+
+popups.forEach(popup => {
+  // закрытие по клику
+  popup.addEventListener('click', click => {
+    //закрываем по клику
+    if (click.target === popup) {
+      closePopup(popup);
+    }
+  });
+});
+////
 
 addButton.addEventListener('click', () => openPopup(addPopup)); // добавляем ивентлисинер на кнопку addButton на открытие попапа добавления мест
 
@@ -67,28 +90,27 @@ const createCard = ({ name, link }) => {
   return newCard;
 };
 
-CardData.forEach(card => {
+cardData.forEach(card => {
   //проходим циклом по массиву
   const newCard = createCard(card);
   elements.append(newCard);
 });
 
-popupImg.addEventListener('click', () => {
-  closePopup(popupImg); // закрываем еще и по клику по всему попапу(так удобней)
-});
+//функции логики попапов:
+function handleAddSubmit(values, evt) {
+  evt.preventDefault();
+  const placeValue = values['place'];
+  const linkValue = values['img-path'];
+  const newUserCard = createCard({ name: placeValue, link: linkValue });
+  elements.prepend(newUserCard);
+  evt.target.reset(); // скидываем ранее введенные данные с полей
+  closePopup(addPopup); //закрытие попапа после сабмита формы
+}
 
-popups.forEach(popup => {
-  //проходим по всем попапам
-  popup.addEventListener('click', click => {
-    //закрываем по клику
-    if (click.target === popup) {
-      closePopup(popup);
-    }
-  });
-  document.addEventListener('keydown', evt => {
-    //закрываем по esc
-    if (evt.key === 'Escape') {
-      closePopup(popup);
-    }
-  });
-});
+function handleEditSubmit(values, evt) {
+  // добавляем сабмит на форму
+  evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
+  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
+  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
+  closePopup(editPopup); //закрытие попапа после сабмита формы
+}

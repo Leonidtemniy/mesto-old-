@@ -1,26 +1,3 @@
-//
-// работа сделана по методу наставника,
-// есть некоторые отклонения от ТЗ например
-// ошибки срабатывают по онблюр при вызоде из поля
-///////////////////////////////////////////////////
-function handleAddSubmit(values, evt) {
-  evt.preventDefault();
-  const placeValue = values['place'];
-  const linkValue = values['img-path'];
-  const newUserCard = createCard({ name: placeValue, link: linkValue });
-  elements.prepend(newUserCard);
-  evt.target.reset(); // скидываем ранее введенные данные с полей
-  closePopup(addPopup); //закрытие попапа после сабмита формы
-}
-
-function handleEditSubmit(values, evt) {
-  // добавляем сабмит на форму
-  evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
-  profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
-  profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
-  closePopup(editPopup); //закрытие попапа после сабмита формы
-}
-
 const editValidators = {
   name: validateName,
   profession: validateProfession
@@ -79,7 +56,6 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
   const setError = (key, errorMessage) => {
     const inputEl = getInputElement(key);
     inputEl.classList.add(classNames.inputInvalid);
-    setDisabledButton();
 
     let errorEl = getErrorElement(key);
     if (!errorEl) {
@@ -98,7 +74,6 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
     const errorEl = getErrorElement(key);
     if (errorEl) {
       errorEl.remove();
-      setUnDisabledButton();
     }
   };
 
@@ -117,6 +92,7 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
         input.onblur = null;
       };
       clearError(key);
+
       return;
     }
 
@@ -142,6 +118,7 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
       const input = getInputElement(key);
       input.dataset.dirty = 'true';
       const error = validate(key, value, values);
+
       if (!error) {
         return;
       }
@@ -155,44 +132,83 @@ function enableValidation(form, validators, classNames, handleSubmit, handleErro
       handleError(values, evt);
       return; // Прерываем выполнение функции
     }
+    setUnDisabledButton();
     handleSubmit(values, evt);
   });
 }
 function validateName(value) {
-  if (!value) {
-    return 'Вы пропустили это поле.';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.required = true;
+  input.minLength = 2;
+  input.maxLength = 40;
+  input.value = value;
+
+  const isValid =
+    typeof input.checkValidity === 'function' ? input.checkValidity() : /^\w{2,40}$/i.test(value);
+
+  if (!isValid) {
+    return input.validationMessage;
   }
   if (value.length < 2 || value.length > 40) {
     return 'Минимальное колличество символов 2, максимальное 40';
   }
+
   return null;
 }
 function validateProfession(value) {
-  if (!value) {
-    return 'Вы пропустили это поле.';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.required = true;
+  input.minLength = 2;
+  input.maxLength = 200;
+  input.value = value;
+
+  const isValid =
+    typeof input.checkValidity === 'function' ? input.checkValidity() : /^\w{2,200}$/i.test(value);
+
+  if (!isValid) {
+    return input.validationMessage;
   }
   if (value.length < 2 || value.length > 200) {
     return 'Минимальное колличество символов 2, максимальное 200';
   }
+
   return null;
 }
 function validatePlace(value) {
-  if (!value) {
-    return 'Вы пропустили это поле.';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.required = true;
+  input.minLength = 2;
+  input.maxLength = 30;
+  input.value = value;
+
+  const isValid =
+    typeof input.checkValidity === 'function' ? input.checkValidity() : /^\w{2,30}$/i.test(value);
+
+  if (!isValid) {
+    return input.validationMessage;
   }
   if (value.length < 2 || value.length > 30) {
     return 'Минимальное колличество символов 2, максимальное 30';
   }
+
   return null;
 }
 function validateImgPath(value) {
-  if (!value) {
-    return 'Вы пропустили это поле.';
-  }
+  const input = document.createElement('input');
+  input.type = 'url';
+  input.required = true;
+  input.value = value;
 
-  if (!/^(http|https):\/\/.*\.(jpg|jpeg|png|gif)$/i.test(value)) {
-    return 'Введите адрес сайта.';
-  }
+  const isValid =
+    typeof input.checkValidity === 'function'
+      ? input.checkValidity()
+      : /^(http|https):\/\/.*\.(jpg|jpeg|png|gif)$/i.test(value);
 
+  if (!isValid) {
+    return input.validationMessage;
+  }
   return null;
 }

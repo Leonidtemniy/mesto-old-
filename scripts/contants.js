@@ -1,4 +1,4 @@
-const CardData = [
+const cardData = [
   // массив с карточками
   {
     name: 'Архыз',
