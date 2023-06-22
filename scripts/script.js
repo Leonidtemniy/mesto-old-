@@ -96,21 +96,24 @@ cardData.forEach(card => {
   elements.append(newCard);
 });
 
-//функции логики попапов:
-function handleAddSubmit(values, evt) {
-  evt.preventDefault();
-  const placeValue = values['place'];
-  const linkValue = values['img-path'];
-  const newUserCard = createCard({ name: placeValue, link: linkValue });
-  elements.prepend(newUserCard);
-  evt.target.reset(); // скидываем ранее введенные данные с полей
-  closePopup(addPopup); //закрытие попапа после сабмита формы
-}
-
-function handleEditSubmit(values, evt) {
+editPopupForm.addEventListener('submit', function (evt) {
   // добавляем сабмит на форму
   evt.preventDefault(); //прерываем обновление страницы и отправку на сервер
   profileTitle.textContent = nameInput.value; // присваеваем значениее из инпута
   profileProfession.textContent = professionInput.value; // присваеваем значениее из инпута
   closePopup(editPopup); //закрытие попапа после сабмита формы
-}
+});
+
+addPopupForm.addEventListener('submit', evt => {
+  evt.preventDefault(); // прерываем обновление страницы и отправку на сервер
+  const form = evt.target;
+  const formData = new FormData(form);
+  /**@type {HTMLFormElement} */
+  const values = Object.fromEntries(formData);
+  const placeValue = values['place'];
+  const linkValue = values['img-path'];
+  const newUserCard = createCard({ name: placeValue, link: linkValue });
+  elements.prepend(newUserCard);
+  form.reset(); // скидываем ранее введенные данные с полей
+  closePopup(addPopup); //закрытие попапа после сабмита формы
+});
