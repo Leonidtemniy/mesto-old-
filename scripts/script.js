@@ -17,20 +17,21 @@ const addPopupForm = addPopup.querySelector('#popupAddCardForm'); //объявл
 const popups = document.querySelectorAll('.popup'); // выбираем все попапы и объявляем переменную
 
 ////функции закрытия и открытия
+///функция закрытия по Esc
 function closeByEsc(evt) {
-  //функция закрытия по Esc
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
 }
-
+/// создаем функцию на закрытие попапа
 function closePopup(anyPopup) {
-  anyPopup.classList.remove('popup_opened'); // создаем функцию на закрытие попапа
+  anyPopup.classList.remove('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
+/// создаем функцию на открытие попапа
 function openPopup(anyPopup) {
-  anyPopup.classList.add('popup_opened'); // создаем функцию на открытие попапа
+  anyPopup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
 

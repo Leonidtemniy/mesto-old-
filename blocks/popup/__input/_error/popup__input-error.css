@@ -1,4 +1,4 @@
-.popup__error {
+.popup__input-error {
   margin: 0;
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__error {
+  .popup__input-error {
     margin-left: 20px;
   }
 }

@@ -218,3 +218,4 @@ function validateImgPath(value) {
 
   return null;
 }
+////////////////

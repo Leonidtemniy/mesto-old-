@@ -50,14 +50,24 @@
               type="text"
               placeholder="Имя"
               name="name"
+              id="name"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="name-input-error popup__input-error"></span>
 
             <input
               class="popup__input popup__input_type_profession"
               type="text"
               placeholder="Профессия"
               name="profession"
+              id="profession"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span class="profession-input-error popup__input-error"></span>
           </div>
 
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Сохранить</button>
@@ -86,13 +96,21 @@
               type="text"
               placeholder="Название"
               name="place"
+              id="place"
+              minlength="2"
+              maxlength="30"
+              required
             />
+            <span class="place-input-error popup__input-error"></span>
             <input
               class="popup__input popup__input_type_img-path"
               placeholder="Ссылка на картинку"
               type="url"
               name="img-path"
+              id="img-path"
+              required
             />
+            <span class="img-path-input-error popup__input-error"></span>
           </div>
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Создать</button>
         </form>
