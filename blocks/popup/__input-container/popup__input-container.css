@@ -1,8 +1,0 @@
-.popup__input-container {
-  display: flex;
-  min-height: 160px;
-  flex-direction: column;
-  margin-bottom: 10px;
-  align-content: space-evenly;
-  justify-content: flex-start;
-}
