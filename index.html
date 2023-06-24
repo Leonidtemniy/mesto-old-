@@ -43,29 +43,31 @@
         <button class="popup__closebutton" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="popupProfilInfoForm" method="post" novalidate>
-          <div class="popup__input-container">
-            <input
-              class="popup__input popup__input_type_name"
-              type="text"
-              placeholder="Имя"
-              name="name"
-              id="name"
-              minlength="2"
-              maxlength="40"
-              required
-            />
+          <input
+            class="popup__input popup__input_type_name"
+            type="text"
+            placeholder="Имя"
+            name="name"
+            id="name"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <div class="popup__input-errorcontainer">
             <span class="name-input-error popup__input-error"></span>
+          </div>
 
-            <input
-              class="popup__input popup__input_type_profession"
-              type="text"
-              placeholder="Профессия"
-              name="profession"
-              id="profession"
-              minlength="2"
-              maxlength="200"
-              required
-            />
+          <input
+            class="popup__input popup__input_type_profession"
+            type="text"
+            placeholder="Профессия"
+            name="profession"
+            id="profession"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <div class="popup__input-errorcontainer">
             <span class="profession-input-error popup__input-error"></span>
           </div>
 
@@ -99,7 +101,9 @@
             maxlength="30"
             required
           />
-          <span class="place-input-error form__input-error"></span>
+          <div class="popup__input-errorcontainer">
+            <span class="place-input-error popup__input-error"></span>
+          </div>
           <input
             class="popup__input popup__input_type_img-path"
             placeholder="Ссылка на картинку"
@@ -108,8 +112,9 @@
             id="img-path"
             required
           />
-          <span class="img-path-input-error form__input-error"></span>
-
+          <div class="popup__input-errorcontainer">
+            <span class="img-path-input-error popup__input-error"></span>
+          </div>
           <button class="popup__savebutton" type="submit" aria-label="сохранить">Создать</button>
         </form>
       </div>

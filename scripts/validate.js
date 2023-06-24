@@ -5,16 +5,16 @@
 
 ///функция показывает элемент ошибки
 const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add('popup__input_invalid '); //красим инпкт красным
+  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
+  inputElement.classList.add('popup__input_invalid'); //красим инпкт красным
   errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active'); // показываем сообщение об ошибке
+  errorElement.classList.add('popup__input-error'); // показываем сообщение об ошибке
 };
 ///функция скрывает элемент ошибки
 const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_invalid '); //убираем красным боксшэдоу
-  errorElement.classList.remove('form__input-error_active'); // скрываем сообщение об ошибке
+  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
+  inputElement.classList.remove('popup__input_invalid'); //убираем красным боксшэдоу
+  errorElement.classList.remove('popup__input-error'); // скрываем сообщение об ошибке
   errorElement.textContent = '';
 };
 ///функция проверки инпутов на валидность
@@ -51,17 +51,17 @@ function setSubmitButtonState(isFormValid, button) {
     button.classList.remove('popup__savebutton_disabled');
   } else {
     button.setAttribute('disabled', true);
-    button.classList.add('popup__savebutton_disabled ');
+    button.classList.add('popup__savebutton_disabled');
   }
 }
 
 //вызов функции enableValidation
 enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__savebutton',
-  inactiveButtonClass: 'popup__savebutton_disabled ',
-  inputErrorClass: 'popup__input_invalid',
-  errorClass: 'popup__error_visible'
+  formElement: '.popup__form',
+  inputElement: '.popup__input',
+  button: '.popup__savebutton',
+  inactiveButtonClass: 'popup__savebutton_disabled',
+  inputErrorElement: 'popup__input_invalid',
+  errorClass: 'popup__input-error_active'
 });
 ////////////////////////////
