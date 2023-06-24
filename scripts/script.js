@@ -45,7 +45,7 @@ popups.forEach(popup => {
   });
 });
 ////
-
+///фунция очищения
 addButton.addEventListener('click', () => openPopup(addPopup)); // добавляем ивентлисинер на кнопку addButton на открытие попапа добавления мест
 
 editButton.addEventListener('click', function () {

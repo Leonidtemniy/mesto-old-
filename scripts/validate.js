@@ -28,11 +28,31 @@ const checkInputValidity = (formElement, inputElement) => {
 ///функция добавления слушателей на все инпуты
 const setEventListeners = formElement => {
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__savebutton');
+
   inputList.forEach(inputElement => {
-    inputElement.addEventListener('input', () => checkInputValidity(formElement, inputElement));
+    inputElement.addEventListener('input', () => {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
   });
 };
-
+///функция на проверку на невалидность всех инпутов
+const hasInvalidInput = inputList => {
+  return inputList.some(inputElement => {
+    return !inputElement.validity.valid;
+  });
+};
+/// функция изменения состояния кнопки
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__savebutton_disabled');
+    buttonElement.setAttribute('disabled', true);
+  } else {
+    buttonElement.classList.remove('popup__savebutton_disabled');
+    buttonElement.removeAttribute('disabled', true);
+  }
+};
 ///функция запуска валидации
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll('.popup__form'));
@@ -44,22 +64,11 @@ const enableValidation = () => {
   });
 };
 
-///функция состояния кнопки
-function setSubmitButtonState(isFormValid, button) {
-  if (isFormValid) {
-    button.removeAttribute('disabled');
-    button.classList.remove('popup__savebutton_disabled');
-  } else {
-    button.setAttribute('disabled', true);
-    button.classList.add('popup__savebutton_disabled');
-  }
-}
-
 //вызов функции enableValidation
 enableValidation({
   formElement: '.popup__form',
   inputElement: '.popup__input',
-  button: '.popup__savebutton',
+  buttonElement: '.popup__savebutton',
   inactiveButtonClass: 'popup__savebutton_disabled',
   inputErrorElement: 'popup__input_invalid',
   errorClass: 'popup__input-error_active'

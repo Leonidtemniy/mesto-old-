@@ -2,6 +2,9 @@
   min-height: 30px;
   margin-left: 36px;
 }
+.popup__input-errorcontainer:last-of-type {
+  margin-bottom: 5px;
+}
 @media screen and (max-width: 767px) {
   .popup__input-errorcontainer {
     margin-left: 20px;
