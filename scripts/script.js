@@ -117,4 +117,6 @@ addPopupForm.addEventListener('submit', evt => {
   elements.prepend(newUserCard);
   form.reset(); // скидываем ранее введенные данные с полей
   closePopup(addPopup); //закрытие попапа после сабмита формы
+  const closeButton = addPopupForm.querySelector('.popup__savebutton');
+  closeButton.classList.add('popup__savebutton_disabled');
 });
