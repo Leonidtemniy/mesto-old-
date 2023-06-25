@@ -119,4 +119,5 @@ addPopupForm.addEventListener('submit', evt => {
   closePopup(addPopup); //закрытие попапа после сабмита формы
   const closeButton = addPopupForm.querySelector('.popup__savebutton');
   closeButton.classList.add('popup__savebutton_disabled');
+  closeButton.setAttribute('disabled', true);
 });
