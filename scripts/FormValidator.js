@@ -1,1 +1,3 @@
-export class FormValidator {}
+export class FormValidator {
+  constructor() {}
+}

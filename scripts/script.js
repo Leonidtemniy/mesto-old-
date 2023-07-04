@@ -74,36 +74,36 @@ const popupImgTitle = popupImg.querySelector('.popup-img__title');
 const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
 
 // функция создания карточки
-const createCard = ({ name, link }) => {
-  const newCard = cardTemplate.cloneNode(true);
-  const newCardName = newCard.querySelector('.element__title'); // объявляем переменную с названием места
-  newCardName.textContent = name; // присваеваем текст названия из масива
-  const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
-  newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
-  newCardPhoto.alt = 'Фотография ' + name;
-  newCardPhoto.addEventListener('click', () => {
-    openPopup(popupImg);
-    popupImgTitle.textContent = newCardName.textContent;
-    popupImgPhoto.src = newCardPhoto.src;
-    popupImgPhoto.alt = newCardPhoto.alt;
-  });
-  const likeButton = newCard.querySelector('.element__button-like');
-  likeButton.addEventListener('click', () => {
-    likeButton.classList.toggle('element__button-like_active');
-  });
-  const trashButton = newCard.querySelector('.element__button-trash');
-  trashButton.addEventListener('click', () => {
-    newCard.remove();
-  });
+// const createCard = ({ name, link }) => {
+//   const newCard = cardTemplate.cloneNode(true);
+//   const newCardName = newCard.querySelector('.element__title'); // объявляем переменную с названием места
+//   newCardName.textContent = name; // присваеваем текст названия из масива
+//   const newCardPhoto = newCard.querySelector('.element__photo'); // объявляем переменную с фото
+//   newCardPhoto.src = link; // присваеваем текст ссылки на фото из масива
+//   newCardPhoto.alt = 'Фотография ' + name;
+//   newCardPhoto.addEventListener('click', () => {
+//     openPopup(popupImg);
+//     popupImgTitle.textContent = newCardName.textContent;
+//     popupImgPhoto.src = newCardPhoto.src;
+//     popupImgPhoto.alt = newCardPhoto.alt;
+//   });
+//   const likeButton = newCard.querySelector('.element__button-like');
+//   likeButton.addEventListener('click', () => {
+//     likeButton.classList.toggle('element__button-like_active');
+//   });
+//   const trashButton = newCard.querySelector('.element__button-trash');
+//   trashButton.addEventListener('click', () => {
+//     newCard.remove();
+//   });
 
-  return newCard;
-};
+//   return newCard;
+// };
 
-cardData.forEach(card => {
-  //проходим циклом по массиву
-  const newCard = createCard(card);
-  elements.append(newCard);
-});
+//проходим циклом по массиву
+// cardData.forEach(card => {
+//   const newCard = createCard(card);
+//   elements.append(newCard);
+// });
 
 // добавляем сабмит на форму edit
 editPopupForm.addEventListener('submit', function (evt) {
