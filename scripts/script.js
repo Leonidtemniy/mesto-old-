@@ -1,3 +1,32 @@
+import { Card } from './Card.js';
+const cardData = [
+  // массив с карточками
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
 ////Переменные и константы
 
 //объявляем переменную для кнопки редактирования профиля
@@ -73,6 +102,13 @@ const popupImg = document.querySelector('.popup-img');
 const popupImgTitle = popupImg.querySelector('.popup-img__title');
 const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
 
+//перебор массива для создания карточек при загрузки
+cardData.forEach(card => {
+  const newCard = new Card(card, '#element-template');
+  const newCardElement = newCard.generateCard();
+  document.querySelector('.elements').append(newCardElement);
+});
+
 // функция создания карточки
 // const createCard = ({ name, link }) => {
 //   const newCard = cardTemplate.cloneNode(true);
@@ -113,7 +149,7 @@ editPopupForm.addEventListener('submit', function (evt) {
   closePopup(editPopup); //закрытие попапа после сабмита формы
 });
 
-// добавляем сабмит на форму add
+//добавляем сабмит на форму add
 addPopupForm.addEventListener('submit', evt => {
   evt.preventDefault(); // прерываем обновление страницы и отправку на сервер
   const form = evt.target;
@@ -121,11 +157,15 @@ addPopupForm.addEventListener('submit', evt => {
   const values = Object.fromEntries(formData);
   const placeValue = values['place'];
   const linkValue = values['img-path'];
-  const newUserCard = createCard({ name: placeValue, link: linkValue });
-  elements.prepend(newUserCard);
+
+  const card = new Card({ name: placeValue, link: linkValue }, '#element-template');
+  const newUserCard = card.generateCard();
+  document.querySelector('.elements').prepend(newUserCard);
+
   form.reset(); // скидываем ранее введенные данные с полей
   closePopup(addPopup); //закрытие попапа после сабмита формы
   const closeButton = addPopupForm.querySelector('.popup__savebutton');
   closeButton.classList.add('popup__savebutton_disabled');
   closeButton.setAttribute('disabled', true);
 });
+export { cardData };

@@ -1,42 +1,15 @@
-const cardData = [
-  // массив с карточками
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 //создаем и экспортируем класс Сard
 class Card {
-  constructor(name, link) {
-    this._name = name;
-    this._link = link;
+  constructor(data, templateSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._tempateSelector = templateSelector;
   }
 
   //создаем метод который находит, клонирует, и возращает тэмплэйт элемент
   _getTemplate() {
     const cardTemplate = document
-      .querySelector('#element-template')
+      .querySelector(this._tempateSelector)
       .content.querySelector('.element')
       .cloneNode(true);
     return cardTemplate;
@@ -50,12 +23,29 @@ class Card {
     this._element.querySelector('.element__title').textContent = this._name;
     this._element.querySelector('.element__photo').src = this._link;
     this._element.querySelector('.element__photo').alt = 'Фотография' + this._name;
+    this._setEventListeners();
     return this._element;
+  }
+  //Устанавливаем эвентлисенеры и передает туда методы
+  _setEventListeners() {
+    this._element
+      .querySelector('.element__button-like')
+      .addEventListener('click', () => this._likeCard());
+    this._element
+      .querySelector('.element__button-trash')
+      .addEventListener('click', () => this._deleteCard());
+  }
+  //методы для ивентлисенера
+  _deleteCard() {
+    this._element.remove();
+  }
+  _likeCard() {
+    this._element
+      .querySelector('.element__button-like')
+      .classList.toggle('element__button-like_active');
   }
 } //скобка закрытия класса
 
-cardData.forEach(card => {
-  const newCard = new Card(card.name, card.link);
-  const newCardElement = newCard.generateCard();
-  document.querySelector('.elements').append(newCardElement);
-});
+//перебор массива для создания карточек при загрузки
+
+export { Card };
