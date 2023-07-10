@@ -1,4 +1,9 @@
+import { openPopup, closePopup } from './script.js';
 //создаем и экспортируем класс Сard
+export const popupImg = document.querySelector('.popup-img'); //
+const popupImgTitle = popupImg.querySelector('.popup-img__title');
+const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
+
 class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -34,6 +39,9 @@ class Card {
     this._element
       .querySelector('.element__button-trash')
       .addEventListener('click', () => this._deleteCard());
+    this._element
+      .querySelector('.element__photo')
+      .addEventListener('click', () => this._handleBigPicture());
   }
   //методы для ивентлисенера
   _deleteCard() {
@@ -43,6 +51,11 @@ class Card {
     this._element
       .querySelector('.element__button-like')
       .classList.toggle('element__button-like_active');
+  }
+  _handleBigPicture() {
+    popupImg.classList.add('popup_opened');
+    popupImgPhoto.src = this._link;
+    popupImgTitle.textContent = this._name;
   }
 } //скобка закрытия класса
 
