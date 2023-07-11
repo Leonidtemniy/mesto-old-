@@ -1,5 +1,6 @@
 import { Card, popupImg } from './Card.js';
-import { FormValidator, formSelectors } from './FormValidator.js';
+
+import { FormValidator } from './FormValidator.js';
 
 const cardData = [
   // массив с карточками
@@ -29,6 +30,17 @@ const cardData = [
   }
 ];
 
+const formSelectors = new FormValidator({
+  formElement: '.popup__form',
+  inputElement: '.popup__input',
+  buttonElement: '.popup__savebutton',
+  inactiveButtonClass: 'popup__savebutton_disabled',
+  inputErrorElement: 'popup__input_invalid',
+  errorClass: 'popup__input-error_active'
+});
+
+formSelectors.enableValidation();
+
 ////Переменные и константы
 
 //объявляем переменную для кнопки редактирования профиля
@@ -57,6 +69,7 @@ const addPopupCloseButton = addPopup.querySelector('#addPopupCloseButton');
 const addPopupForm = addPopup.querySelector('#popupAddCardForm');
 //объявляем переменную всех Попапов
 const popups = document.querySelectorAll('.popup');
+/////////////////////
 
 ////функции закрытия и открытия
 
@@ -126,7 +139,6 @@ addPopupForm.addEventListener('submit', evt => {
   const card = new Card({ name: placeValue, link: linkValue }, '#element-template');
   const newUserCard = card.generateCard();
   document.querySelector('.elements').prepend(newUserCard);
-  FormValidator.enableValidation();
   form.reset(); // скидываем ранее введенные данные с полей
   closePopup(addPopup); //закрытие попапа после сабмита формы
   const closeButton = addPopupForm.querySelector('.popup__savebutton');
@@ -134,4 +146,4 @@ addPopupForm.addEventListener('submit', evt => {
   closeButton.setAttribute('disabled', true);
 });
 
-export { cardData };
+export { cardData, formSelectors };

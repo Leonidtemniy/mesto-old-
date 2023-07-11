@@ -1,6 +1,6 @@
 import { openPopup, closePopup } from './script.js';
 //создаем и экспортируем класс Сard
-export const popupImg = document.querySelector('.popup-img'); //
+const popupImg = document.querySelector('.popup-img'); //
 const popupImgTitle = popupImg.querySelector('.popup-img__title');
 const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
 
@@ -61,4 +61,4 @@ class Card {
 
 //перебор массива для создания карточек при загрузки
 
-export { Card };
+export { Card, popupImg, popupImgTitle, popupImgPhoto };
