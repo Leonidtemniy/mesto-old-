@@ -1,6 +1,9 @@
 import { Card, popupImg } from './Card.js';
 
 import { FormValidator } from './FormValidator.js';
+////---------------------------///
+
+////---------------------------///
 
 const cardData = [
   // массив с карточками
@@ -36,10 +39,11 @@ const formSelectors = new FormValidator({
   buttonElement: '.popup__savebutton',
   inactiveButtonClass: 'popup__savebutton_disabled',
   inputErrorElement: 'popup__input_invalid',
-  errorClass: 'popup__input-error_active'
+  errorClass: 'popup__input-error'
 });
 
 formSelectors.enableValidation();
+console.log(formSelectors._inputErrorElement);
 
 ////Переменные и константы
 
@@ -143,7 +147,7 @@ addPopupForm.addEventListener('submit', evt => {
   closePopup(addPopup); //закрытие попапа после сабмита формы
   const closeButton = addPopupForm.querySelector('.popup__savebutton');
   closeButton.classList.add('popup__savebutton_disabled');
-  closeButton.setAttribute('disabled', true);
+  closeButton.setAttribute('disabled', 'disabled');
 });
 
 export { cardData, formSelectors };

@@ -1,4 +1,3 @@
-import { openPopup, closePopup } from './script.js';
 //создаем и экспортируем класс Сard
 const popupImg = document.querySelector('.popup-img'); //
 const popupImgTitle = popupImg.querySelector('.popup-img__title');
@@ -13,11 +12,10 @@ class Card {
 
   //создаем метод который находит, клонирует, и возращает тэмплэйт элемент
   _getTemplate() {
-    const cardTemplate = document
-      .querySelector(this._tempateSelector)
-      .content.querySelector('.element')
-      .cloneNode(true);
-    return cardTemplate;
+    return document
+        .querySelector(this._tempateSelector)
+        .content.querySelector('.element')
+        .cloneNode(true);
   }
 
   //публичный метод создания карточи и подготовка к публикации
