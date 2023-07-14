@@ -1,5 +1,5 @@
 .element__button-like {
-  background: #ffffff url(../../../images/Vector.svg) no-repeat center / cover;
+  background: #ffffff url(../../../images/Vector.svg) no-repeat center / contain;
   min-width: 22px;
   height: 19px;
   margin-right: 20px;

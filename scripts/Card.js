@@ -1,7 +1,6 @@
+import { closePopup, openPopup, closeByEsc } from './script.js';
+
 //создаем и экспортируем класс Сard
-const popupImg = document.querySelector('.popup-img'); //
-const popupImgTitle = popupImg.querySelector('.popup-img__title');
-const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
 
 class Card {
   constructor(data, templateSelector) {
@@ -10,53 +9,53 @@ class Card {
     this._tempateSelector = templateSelector;
   }
 
-  //создаем метод который находит, клонирует, и возращает тэмплэйт элемент
+  //========Cоздаем метод который возращает найденный, клонируемый,тэмплэйт элемент====//
   _getTemplate() {
     return document
-        .querySelector(this._tempateSelector)
-        .content.querySelector('.element')
-        .cloneNode(true);
+      .querySelector(this._tempateSelector)
+      .content.querySelector('.element')
+      .cloneNode(true);
   }
 
-  //публичный метод создания карточи и подготовка к публикации
+  //==============Публичный метод создания карточи и подготовка к публикации===========//
   generateCard() {
-    //передаем разметку в приватное поле _element
     this._element = this._getTemplate();
-    //добавляем данные
     this._element.querySelector('.element__title').textContent = this._name;
     this._element.querySelector('.element__photo').src = this._link;
     this._element.querySelector('.element__photo').alt = 'Фотография' + this._name;
     this._setEventListeners();
     return this._element;
   }
-  //Устанавливаем эвентлисенеры и передает туда методы
+  //===========Устанавливаем эвентлисенеры и передает туда методы===========//
   _setEventListeners() {
-    this._element
-      .querySelector('.element__button-like')
-      .addEventListener('click', () => this._likeCard());
-    this._element
-      .querySelector('.element__button-trash')
-      .addEventListener('click', () => this._deleteCard());
-    this._element
-      .querySelector('.element__photo')
-      .addEventListener('click', () => this._handleBigPicture());
+    this._likeIcon = this._element.querySelector('.element__button-like');
+    this._likeIcon.addEventListener('click', () => this._likeCard());
+
+    this._trashBinIcon = this._element.querySelector('.element__button-trash');
+    this._trashBinIcon.addEventListener('click', () => this._deleteCard());
+
+    this._popupImg = document.querySelector('.popup-img');
+    this._popupImgTitle = this._popupImg.querySelector('.popup-img__title');
+    this._cardImage = this._element.querySelector('.element__photo');
+    this._cardImage.addEventListener('click', () => this._handleBigPicture());
+    this._popupImg.addEventListener('click', () => this._handleCloseBigPicture());
   }
-  //методы для ивентлисенера
+
+  //=============Методы для ивентлисенера=============//
   _deleteCard() {
     this._element.remove();
   }
   _likeCard() {
-    this._element
-      .querySelector('.element__button-like')
-      .classList.toggle('element__button-like_active');
+    this._likeIcon.classList.toggle('element__button-like_active');
   }
   _handleBigPicture() {
-    popupImg.classList.add('popup_opened');
-    popupImgPhoto.src = this._link;
-    popupImgTitle.textContent = this._name;
+    openPopup(this._popupImg);
+    this._popupImgTitle.textContent = this._name;
+  }
+  _handleCloseBigPicture() {
+    closePopup(this._popupImg);
+    closeByEsc(evt);
   }
 } //скобка закрытия класса
 
-//перебор массива для создания карточек при загрузки
-
-export { Card, popupImg, popupImgTitle, popupImgPhoto };
+export { Card };
