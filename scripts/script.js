@@ -28,8 +28,37 @@ const cardData = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+//===========Универсальный метод ревьюера==============//
+// const formSelectors = {
+//   formElement: '.popup__form',
+//   inputElement: '.popup__input',
+//   buttonElement: '.popup__savebutton',
+//   inactiveButtonClass: 'popup__savebutton_disabled',
+//   inputErrorElement: 'popup__input_invalid',
+//   errorClass: 'popup__input-error'
+// };
+// //
+// const formValidators = {};
+
+// // // Включение валидации
+// const enableValidation = config => {
+//   const formList = Array.from(document.querySelectorAll(config.formSelector));
+//   formList.forEach(formElement => {
+//     const validator = new FormValidator(config, formElement);
+//     // получаем данные из атрибута `name` у формы
+//     const formName = formElement.getAttribute('name');
+
+//     // вот тут в объект записываем под именем формы
+//     formValidators[formName] = validator;
+//     validator.enableValidation();
+//   });
+// };
+// enableValidation(config);
+//======не разобрался пока=======//
+
 //======================Селекторы для валидации===================///
-const formSelectors = new FormValidator({
+const formSelectorsEdit = new FormValidator({
   formElement: '.popup__form',
   inputElement: '.popup__input',
   buttonElement: '.popup__savebutton',
@@ -38,7 +67,18 @@ const formSelectors = new FormValidator({
   errorClass: 'popup__input-error'
 });
 
-formSelectors.enableValidation();
+formSelectorsEdit.enableValidation();
+
+const formSelectorsAdd = new FormValidator({
+  formElement: '.popup__form-add',
+  inputElement: '.popup__input',
+  buttonElement: '.popup__savebutton',
+  inactiveButtonClass: 'popup__savebutton_disabled',
+  inputErrorElement: 'popup__input_invalid',
+  errorClass: 'popup__input-error'
+});
+
+formSelectorsAdd.enableValidation();
 
 //======================Переменные и константы===================///
 const editButton = document.querySelector('.profile__edit-button');
@@ -126,4 +166,4 @@ addPopupForm.addEventListener('submit', evt => {
   closePopup(addPopup); //закрытие попапа после сабмита формы
 });
 
-export { cardData, formSelectors };
+export { cardData };

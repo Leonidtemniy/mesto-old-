@@ -32,36 +32,35 @@ export class FormValidator {
   }
   ///метод добавления слушателей на все инпуты
   setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(`${this._inputElement}`));
-    const buttonElement = formElement.querySelector(`${this._buttonElement}`);
+    this._inputList = Array.from(formElement.querySelectorAll(`${this._inputElement}`));
+    this._submitButton = formElement.querySelector(`${this._buttonElement}`);
 
-    inputList.forEach(inputElement => {
+    this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         this.checkInputValidity(inputElement);
-        this.toggleButtonState(inputList, buttonElement);
+        this.toggleButtonState();
       });
     });
   }
   ///метод на проверку на невалидность всех инпутов
-  hasInvalidInput(inputList) {
-    return inputList.some(inputElement => {
+  hasInvalidInput() {
+    return this._inputList.some(inputElement => {
       return !inputElement.validity.valid;
     });
   }
   /// метод изменения состояния кнопки
-  toggleButtonState(inputList, buttonElement) {
-    if (this.hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._inactiveButtonClass);
-      buttonElement.setAttribute('disabled', 'disabled');
+  toggleButtonState() {
+    if (this.hasInvalidInput()) {
+      this._submitButton.classList.add(this._inactiveButtonClass);
+      this._submitButton.setAttribute('disabled', 'disabled');
     } else {
-      buttonElement.classList.remove(this._inactiveButtonClass);
-      buttonElement.removeAttribute('disabled', 'disabled');
+      this._submitButton.classList.remove(this._inactiveButtonClass);
+      this._submitButton.removeAttribute('disabled', 'disabled');
     }
   }
+
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(`${this._formElement}`));
-    formList.forEach(formElement => {
-      this.setEventListeners(formElement);
-    });
+    const formElement = document.querySelector(`${this._formElement}`);
+    this.setEventListeners(formElement);
   }
 }
