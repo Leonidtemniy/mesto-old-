@@ -127,12 +127,14 @@ popups.forEach(popup => {
 addButton.addEventListener('click', () => {
   openPopup(addPopup);
   formSelectorsAdd.resetValidation();
+
   addPopupInputPlace.value = '';
   addPopupInputPath.value = '';
 });
 // добавляем ивентлисинер по клику на кнопку editButton для открытия попапа редактирования
 editButton.addEventListener('click', function () {
   openPopup(editPopup);
+  formSelectorsEdit.resetValidation();
   nameInput.value = profileTitle.textContent;
   professionInput.value = profileProfession.textContent;
 });
