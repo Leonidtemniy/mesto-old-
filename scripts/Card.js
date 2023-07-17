@@ -1,4 +1,4 @@
-import { closePopup, openPopup } from './script.js';
+import { openPopup } from './script.js';
 
 //создаем и экспортируем класс Сard
 
