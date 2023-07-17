@@ -1,4 +1,4 @@
-import { closePopup, openPopup, closeByEsc } from './script.js';
+import { closePopup, openPopup } from './script.js';
 
 //создаем и экспортируем класс Сard
 
@@ -35,10 +35,10 @@ class Card {
     this._trashBinIcon.addEventListener('click', () => this._deleteCard());
 
     this._popupImg = document.querySelector('.popup-img');
+    this._popupImgPhoto = this._popupImg.querySelector('.popup-img__photo');
     this._popupImgTitle = this._popupImg.querySelector('.popup-img__title');
     this._cardImage = this._element.querySelector('.element__photo');
     this._cardImage.addEventListener('click', () => this._handleBigPicture());
-    this._popupImg.addEventListener('click', () => this._handleCloseBigPicture());
   }
 
   //=============Методы для ивентлисенера=============//
@@ -50,11 +50,8 @@ class Card {
   }
   _handleBigPicture() {
     openPopup(this._popupImg);
+    this._popupImgPhoto.src = this._link;
     this._popupImgTitle.textContent = this._name;
-  }
-  _handleCloseBigPicture() {
-    closePopup(this._popupImg);
-    closeByEsc(evt);
   }
 } //скобка закрытия класса
 

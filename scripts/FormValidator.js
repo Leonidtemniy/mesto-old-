@@ -63,4 +63,10 @@ export class FormValidator {
     const formElement = document.querySelector(`${this._formElement}`);
     this.setEventListeners(formElement);
   }
+  resetValidation() {
+    this.toggleButtonState();
+    this._inputList.forEach(inputElement => {
+      this.hideInputError(inputElement);
+    });
+  }
 }

@@ -95,6 +95,8 @@ const addPopupCloseButton = addPopup.querySelector('#addPopupCloseButton');
 const addPopupForm = addPopup.querySelector('#popupAddCardForm');
 const popups = document.querySelectorAll('.popup');
 const cardSection = document.querySelector('.elements');
+const addPopupInputPlace = addPopup.querySelector('.popup__input_type_place');
+const addPopupInputPath = addPopup.querySelector('.popup__input_type_img-path');
 
 //=================Функция закрытия попапа по Esc================//
 export function closeByEsc(evt) {
@@ -122,7 +124,12 @@ popups.forEach(popup => {
   });
 });
 //===========Ивентлисинер на кнопку addButton на открытие попапа добавления мест======//
-addButton.addEventListener('click', () => openPopup(addPopup));
+addButton.addEventListener('click', () => {
+  openPopup(addPopup);
+  formSelectorsAdd.resetValidation();
+  addPopupInputPlace.value = '';
+  addPopupInputPath.value = '';
+});
 // добавляем ивентлисинер по клику на кнопку editButton для открытия попапа редактирования
 editButton.addEventListener('click', function () {
   openPopup(editPopup);
