@@ -9,7 +9,7 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-  padding: 45px 0px 0px;
+  padding: 45px 0 0;
   box-sizing: border-box;
   display: grid;
   justify-content: center;

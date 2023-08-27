@@ -29,55 +29,22 @@ const cardData = [
   }
 ];
 
-//===========Универсальный метод ревьюера==============//
-// const formSelectors = {
-//   formElement: '.popup__form',
-//   inputElement: '.popup__input',
-//   buttonElement: '.popup__savebutton',
-//   inactiveButtonClass: 'popup__savebutton_disabled',
-//   inputErrorElement: 'popup__input_invalid',
-//   errorClass: 'popup__input-error'
-// };
-// //
-// const formValidators = {};
-
-// // // Включение валидации
-// const enableValidation = config => {
-//   const formList = Array.from(document.querySelectorAll(config.formSelector));
-//   formList.forEach(formElement => {
-//     const validator = new FormValidator(config, formElement);
-//     // получаем данные из атрибута `name` у формы
-//     const formName = formElement.getAttribute('name');
-
-//     // вот тут в объект записываем под именем формы
-//     formValidators[formName] = validator;
-//     validator.enableValidation();
-//   });
-// };
-// enableValidation(config);
-//======не разобрался пока=======//
-
 //======================Селекторы для валидации===================///
-const formSelectorsEdit = new FormValidator({
-  formElement: '.popup__form',
+const settings = {
   inputElement: '.popup__input',
   buttonElement: '.popup__savebutton',
   inactiveButtonClass: 'popup__savebutton_disabled',
   inputErrorElement: 'popup__input_invalid',
   errorClass: 'popup__input-error'
-});
+};
 
+const formElement = document.querySelector('.popup__form');
+const addFormElement = document.querySelector('.popup__form-add');
+
+const formSelectorsEdit = new FormValidator(settings, formElement);
 formSelectorsEdit.enableValidation();
 
-const formSelectorsAdd = new FormValidator({
-  formElement: '.popup__form-add',
-  inputElement: '.popup__input',
-  buttonElement: '.popup__savebutton',
-  inactiveButtonClass: 'popup__savebutton_disabled',
-  inputErrorElement: 'popup__input_invalid',
-  errorClass: 'popup__input-error'
-});
-
+const formSelectorsAdd = new FormValidator(settings, addFormElement);
 formSelectorsAdd.enableValidation();
 
 //======================Переменные и константы===================///
@@ -111,25 +78,27 @@ export function closePopup(anyPopup) {
   document.removeEventListener('keydown', closeByEsc);
 }
 //=================Функцию открытие попапа======================//
-export function openPopup(anyPopup) {
+function openPopup(anyPopup) {
   anyPopup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
 //================Закрытие кликом по оверлею===================//
 popups.forEach(popup => {
-  popup.addEventListener('click', click => {
-    if (click.target === popup) {
+  popup.addEventListener('mousedown', evt => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__closebutton')) {
       closePopup(popup);
     }
   });
 });
 //===========Ивентлисинер на кнопку addButton на открытие попапа добавления мест======//
 addButton.addEventListener('click', () => {
-  openPopup(addPopup);
-  formSelectorsAdd.resetValidation();
-
   addPopupInputPlace.value = '';
   addPopupInputPath.value = '';
+  formSelectorsAdd.resetValidation();
+  openPopup(addPopup);
 });
 // добавляем ивентлисинер по клику на кнопку editButton для открытия попапа редактирования
 editButton.addEventListener('click', function () {
@@ -175,4 +144,4 @@ addPopupForm.addEventListener('submit', evt => {
   closePopup(addPopup); //закрытие попапа после сабмита формы
 });
 
-export { cardData };
+export { cardData, openPopup };

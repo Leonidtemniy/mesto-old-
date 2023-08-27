@@ -1,6 +1,6 @@
 export class FormValidator {
-  constructor(formSelectorsSet) {
-    this._formElement = formSelectorsSet.formElement;
+  constructor(formSelectorsSet, formElement) {
+    this._formElement = formElement;
     this._inputElement = formSelectorsSet.inputElement;
     this._buttonElement = formSelectorsSet.buttonElement;
     this._inactiveButtonClass = formSelectorsSet.inactiveButtonClass;
@@ -55,13 +55,13 @@ export class FormValidator {
       this._submitButton.setAttribute('disabled', 'disabled');
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
-      this._submitButton.removeAttribute('disabled', 'disabled');
+      this._submitButton.removeAttribute('disabled');
     }
   }
 
   enableValidation() {
-    const formElement = document.querySelector(`${this._formElement}`);
-    this.setEventListeners(formElement);
+    //const formElement = document.querySelector(`${this._formElement}`);
+    this.setEventListeners(this._formElement);
   }
   resetValidation() {
     this.toggleButtonState();
