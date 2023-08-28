@@ -1,12 +1,20 @@
 //==========Импорт функции openPopup============//
 import { openPopup } from './script.js';
-//==========Cоздаем класс Сard==============//
 
+//===============Переменные и константы=========/
+const popupImg = document.querySelector('.popup-img');
+const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
+const popupImgTitle = popupImg.querySelector('.popup-img__title');
+
+//==========Cоздаем класс Сard==============//
 class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
     this._link = data.link;
     this._tempateSelector = templateSelector;
+    this._popupImg = popupImg;
+    this._popupImgPhoto = popupImgPhoto;
+    this._popupImgTitle = popupImgTitle;
   }
 
   //========Cоздаем метод который возращает найденный, клонируемый,тэмплэйт элемент====//
@@ -24,9 +32,7 @@ class Card {
     this._element.querySelector('.element__title').textContent = this._name;
     this._elementPhoto.src = this._link;
     this._elementPhoto.alt = 'Фотография' + this._name;
-    this._popupImg = document.querySelector('.popup-img');
-    this._popupImgPhoto = this._popupImg.querySelector('.popup-img__photo');
-    this._popupImgTitle = this._popupImg.querySelector('.popup-img__title');
+
     this._setEventListeners();
     return this._element;
   }
