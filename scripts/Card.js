@@ -1,5 +1,5 @@
 //==========Импорт функции openPopup============//
-import { openPopup } from './script.js';
+import { openPopup } from './index.js';
 
 //===============Переменные и константы=========/
 const popupImg = document.querySelector('.popup-img');
