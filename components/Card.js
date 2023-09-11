@@ -1,5 +1,8 @@
+// Свяжите класс Card c попапом. Сделайте так, чтобы Card принимал в конструктор функцию handleCardClick.
+// Эта функция должна открывать попап с картинкой при клике на карточку.
+
 //==========Импорт функции openPopup============//
-import { openPopup } from './index.js';
+import { openPopup } from '../utils/utils.js';
 
 //===============Переменные и константы=========/
 const popupImg = document.querySelector('.popup-img');
@@ -8,13 +11,14 @@ const popupImgTitle = popupImg.querySelector('.popup-img__title');
 
 //==========Cоздаем класс Сard==============//
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._tempateSelector = templateSelector;
     this._popupImg = popupImg;
     this._popupImgPhoto = popupImgPhoto;
     this._popupImgTitle = popupImgTitle;
+    this._handleCardClick = handleCardClick;
   }
 
   //========Cоздаем метод который возращает найденный, клонируемый,тэмплэйт элемент====//
@@ -54,12 +58,13 @@ class Card {
   _likeCard() {
     this._likeIcon.classList.toggle('element__button-like_active');
   }
-  _handleBigPicture() {
-    openPopup(this._popupImg);
-    this._popupImgPhoto.src = this._link;
-    this._popupImgTitle.textContent = this._name;
-    this._popupImgPhoto.alt = `Фотография ` + this._popupImgTitle.textContent;
-  }
+  //надо перенести в PopupWithImage
+  // _handleBigPicture() {
+  //   openPopup(this._popupImg);
+  //   this._popupImgPhoto.src = this._link;
+  //   this._popupImgTitle.textContent = this._name;
+  //   this._popupImgPhoto.alt = `Фотография ` + this._popupImgTitle.textContent;
+  // }
 } //скобка закрытия класса
 
 //==============Экспортируем класс Сard===============//
