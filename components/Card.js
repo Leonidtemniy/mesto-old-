@@ -2,7 +2,7 @@
 // Эта функция должна открывать попап с картинкой при клике на карточку.
 
 //==========Импорт функции openPopup============//
-import { openPopup } from '../utils/utils.js';
+import { openPopup } from '../utils/utils.js'; // не понадобиться после переноса
 
 //===============Переменные и константы=========/
 const popupImg = document.querySelector('.popup-img');
