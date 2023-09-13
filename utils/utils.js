@@ -1,4 +1,5 @@
 import { popups } from './constants.js';
+//перенесены в popup.js
 //=================Функция закрытия попапа по Esc================//
 function closeByEsc(evt) {
   if (evt.key === 'Escape') {
