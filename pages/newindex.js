@@ -65,18 +65,19 @@ const formSelectorsAdd = new FormValidator(settings, addPopupForm);
 formSelectorsAdd.enableValidation();
 
 //=====Добавление карточек из cardData =====//
-const handleCardClick = (name, link) => {
-  popupWithImage.open(name, link);
-};
-
-const newCard = data => {
-  const card = new Card(data, '#element-template', handleCardClick);
-  const cardElement = card.generateCard();
-  return cardElement;
-};
 
 const popupWithImage = new PopupWithImage('.popup-img');
 popupWithImage.setEventListeners();
+
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+}
+
+function newCard(data) {
+  const card = new Card(data, '#element-template', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 const newSection = new Section(
   {
