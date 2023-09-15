@@ -2,7 +2,7 @@
 // Эта функция должна открывать попап с картинкой при клике на карточку.
 
 //==========Импорт функции openPopup============//
-import { openPopup } from '../utils/utils.js'; // не понадобиться после переноса
+//import { openPopup } from '../utils/utils.js'; // не понадобиться после переноса
 
 //===============Переменные и константы=========/
 const popupImg = document.querySelector('.popup-img');
@@ -10,7 +10,7 @@ const popupImgPhoto = popupImg.querySelector('.popup-img__photo');
 const popupImgTitle = popupImg.querySelector('.popup-img__title');
 
 //==========Cоздаем класс Сard==============//
-class Card {
+export class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
@@ -68,4 +68,3 @@ class Card {
 } //скобка закрытия класса
 
 //==============Экспортируем класс Сard===============//
-export { Card };

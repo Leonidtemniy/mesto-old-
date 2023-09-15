@@ -5,7 +5,7 @@
 // Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
 // Модальное окно также закрывается при клике на затемнённую область вокруг формы.
 
-export default class Popup {
+export class Popup {
   constructor(popupSelector) {
     this._popupSelector = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);

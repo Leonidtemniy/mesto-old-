@@ -6,10 +6,10 @@
 // Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
 // Содержит публичный метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу.
 
-export default class UserInfo {
-  constructor({ name, info }) {
-    this._name = document.querySelector(name);
-    this._info = document.querySelector(info);
+export class UserInfo {
+  constructor({ userName, userInfo }) {
+    this._name = document.querySelector(userName);
+    this._info = document.querySelector(userInfo);
   }
   getUserInfo() {
     return {

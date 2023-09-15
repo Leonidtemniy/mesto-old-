@@ -8,9 +8,9 @@
 // но и добавлять обработчик сабмита формы.
 // Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
 // Для каждого попапа создавайте свой экземпляр класса PopupWithForm.
-import Popup from './Popup.js';
+import { Popup } from './Popup.js';
 
-export default class PopupWithForm extends Popup {
+export class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
@@ -20,8 +20,8 @@ export default class PopupWithForm extends Popup {
   }
   _getInputValues() {
     const inputValues = {};
-    this._inputElements.forEach(inputElement => {
-      inputValues[inputElement.name] = inputElement.value;
+    this._inputElements.forEach(inputs => {
+      inputValues[inputs.name] = inputs.value;
     });
     return inputValues;
   }
