@@ -1,4 +1,6 @@
 //=====Импорты=====//
+import './index.css';
+
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Popup } from '../components/Popup.js';
@@ -17,7 +19,7 @@ import {
   cardData,
   cardSection,
   settings
-} from '../utils/constants.js';
+} from '../../utils/constants.js';
 
 //=====Профиль=====//
 
@@ -87,3 +89,4 @@ const newSection = new Section(
   cardSection
 );
 newSection.renderItems();
+console.log('Hello, World!');

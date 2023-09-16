@@ -4,25 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css" />
     <meta name="description" content="Mesto" />
     <meta name="keywords" content="фоторграфии путешествия интресные места" />
     <meta name="author" content="Леонид Т" />
-    <script type="module" src="./pages/newindex.js"></script>
-
-    <!-- <script type="module" src="./pages/index.js" defer></script>
-    <script type="module" src="./components/Card.js"></script>
-    <script type="module" src="./components/FormValidator.js"></script>
-    <script type="module" src="./components/UserInfo.js"></script> -->
+    <script type="module" src="./pages/index.js"></script>
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo-white.svg" alt="Логотип сайта" />
+      <img class="header__logo" src="<%=require('./images/logo-white.svg')%>" alt="Логотип сайта" />
     </header>
     <main class="main">
       <section class="profile">
         <div class="profile__info">
-          <img class="profile__avatar" src="./images/image.jpg" alt="кусто жак ив" />
+          <img
+            class="profile__avatar"
+            src="<%=require('./images/image.jpg')%>"
+            alt="кусто жак ив"
+          />
           <div class="profile__upinfo">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button
