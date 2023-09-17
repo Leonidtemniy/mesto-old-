@@ -42,10 +42,10 @@ editButton.addEventListener('click', () => {
   const userNameAndProfession = userInfo.getUserInfo();
   nameInput.value = userNameAndProfession.name;
   professionInput.value = userNameAndProfession.info;
-});
 
-const formSelectorsEdit = new FormValidator(settings, editPopupForm);
-formSelectorsEdit.enableValidation();
+  const formSelectorsEdit = new FormValidator(settings, editPopupForm);
+  formSelectorsEdit.enableValidation();
+});
 
 //=====Добавление карточек с кнопки=====//
 
@@ -61,10 +61,10 @@ popupWithAddCard.setEventListeners();
 
 addButton.addEventListener('click', () => {
   popupWithAddCard.open();
+  const formSelectorsAdd = new FormValidator(settings, addPopupForm);
+  formSelectorsAdd.enableValidation();
+  formSelectorsAdd.disableButton();
 });
-
-const formSelectorsAdd = new FormValidator(settings, addPopupForm);
-formSelectorsAdd.enableValidation();
 
 //=====Добавление карточек из cardData =====//
 

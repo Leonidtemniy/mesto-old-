@@ -49,6 +49,11 @@ export class FormValidator {
     });
   }
   /// метод изменения состояния кнопки
+  disableButton() {
+    this._submitButton.setAttribute('disabled', 'disabled');
+    this._submitButton.classList.add(this._inactiveButtonClass);
+  }
+
   toggleButtonState() {
     if (this.hasInvalidInput()) {
       this._submitButton.classList.add(this._inactiveButtonClass);
@@ -61,6 +66,7 @@ export class FormValidator {
 
   enableValidation() {
     this.setEventListeners(this._formElement);
+    this.disableButton();
   }
   resetValidation() {
     this.toggleButtonState();
