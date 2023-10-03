@@ -40,7 +40,7 @@
       <section class="elements"></section>
     </main>
     <footer class="footer">
-      <p class="footer__text">&#169; 3023 Mesto Russia</p>
+      <p class="footer__text">&#169; 2023 Mesto Russia</p>
     </footer>
     <div class="popup editpopup">
       <div class="popup__container">
@@ -126,6 +126,26 @@
           >
             Создать
           </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup deletepopup">
+      <div class="popup__container">
+        <button
+          class="popup__closebutton"
+          id="addPopupCloseButton"
+          type="button"
+          aria-label="закрыть"
+        ></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form
+          class="popup__form popup__form-add"
+          id="popupAddCardForm"
+          name="popupAddCardForm"
+          method="post"
+          novalidate
+        >
+          <button class="popup__savebutton" type="submit" aria-label="сохранить">Да</button>
         </form>
       </div>
     </div>

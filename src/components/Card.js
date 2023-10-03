@@ -1,10 +1,11 @@
 //==========Cоздаем класс Сard==============//
 export class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleTrashButtonClick) {
     this._name = data.name;
     this._link = data.link;
     this._tempateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleTrashButtonClick = handleTrashButtonClick;
   }
 
   //========Cоздаем метод который возращает найденный, клонируемый,тэмплэйт элемент====//
@@ -31,7 +32,7 @@ export class Card {
     this._likeIcon.addEventListener('click', () => this._likeCard());
 
     this._trashBinIcon = this._element.querySelector('.element__button-trash');
-    this._trashBinIcon.addEventListener('click', () => this._deleteCard());
+    this._trashBinIcon.addEventListener('click', () => this._handleTrashButtonClick());
 
     this._elementPhoto.addEventListener('click', () =>
       this._handleCardClick(this._name, this._link)

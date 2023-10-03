@@ -19,6 +19,7 @@ import {
   cardSection,
   settings
 } from '../../utils/constants.js';
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation';
 
 //=====Профиль=====//
 
@@ -73,9 +74,13 @@ popupWithImage.setEventListeners();
 function handleCardClick(name, link) {
   popupWithImage.open(name, link);
 }
+const popupWithConfirmation = new PopupWithConfirmation('.deletepopup');
+function handleTrashButtonClick() {
+  popupWithConfirmation.open();
+}
 
 function createCard(data) {
-  const card = new Card(data, '#element-template', handleCardClick);
+  const card = new Card(data, '#element-template', handleCardClick, handleTrashButtonClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
