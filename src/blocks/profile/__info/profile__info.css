@@ -1,8 +1,8 @@
 .profile__info {
   display: grid;
   grid-template-areas:
-    "avatar title"
-    "avatar subtitle";
+    'avatar title'
+    'avatar subtitle';
   justify-content: center;
   flex-direction: column;
   column-gap: 30px;

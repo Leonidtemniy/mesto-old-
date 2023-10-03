@@ -40,6 +40,8 @@ export const popups = document.querySelectorAll('.popup');
 export const cardSection = document.querySelector('.elements');
 export const addPopupInputPlace = addPopup.querySelector('.popup__input_type_place');
 export const addPopupInputPath = addPopup.querySelector('.popup__input_type_img-path');
+export const token = '64ae26d1-10a9-4e49-86a2-9595fb33be7b';
+export const cohort = '76';
 
 //=================Селекторы для валидации===================//
 export const settings = {
